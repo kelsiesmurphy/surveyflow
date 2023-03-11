@@ -1,0 +1,13 @@
+.hero-section {
+    background: url("../../assets/animations/fluid-background-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (min-width: 640px) {
+    .hero-section {
+        background: url('../../assets/animations/fluid-background.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
