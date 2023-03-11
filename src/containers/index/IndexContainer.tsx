@@ -1,8 +1,8 @@
-import About from "./About"
-import CallToAction from "./CallToAction"
-import Footer from "./Footer"
-import Hero from "./Hero"
-import Pricing from "./Pricing"
+import About from "./About";
+import CallToAction from "./CallToAction";
+import Footer from "./Footer";
+import Hero from "./Hero";
+import Pricing from "./Pricing";
 
 const IndexContainer = () => {
   return (
@@ -13,7 +13,7 @@ const IndexContainer = () => {
       <CallToAction />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default IndexContainer
+export default IndexContainer;

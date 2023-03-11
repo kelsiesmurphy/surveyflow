@@ -1,4 +1,3 @@
-
 const Logo = ({ styles }) => {
   return (
     <svg

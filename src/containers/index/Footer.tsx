@@ -8,10 +8,10 @@ const Footer = () => {
         <Logo styles={"text-sky-700"} />
         <form
           action="/newsletter-signup"
-          className="flex max-w-sm flex-1 flex-col gap-2"
+          className="flex max-w-sm flex-1 flex-col gap-2 "
         >
           <h5>Stay up to date</h5>
-          <div className="flex flex-col gap-3 xs:flex-row">
+          <div className="xs:flex-row flex flex-col gap-3">
             <input
               type="email"
               placeholder="Enter your email"

@@ -17,7 +17,7 @@ const Hero = () => {
             understand your customers on a deeper level.
           </h2>
           <form action="/signup" className="flex flex-col gap-2">
-            <div className="flex flex-col gap-3 xs:flex-row">
+            <div className="xs:flex-row flex flex-col gap-3">
               <input
                 type="email"
                 placeholder="Enter your email"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
-import { menu, close } from "../../assets/index.js"
+import { menu, close } from "../../assets/index.js";
 
 const Navigation = () => {
   const [toggle, openMobileMenu] = useState(false);
