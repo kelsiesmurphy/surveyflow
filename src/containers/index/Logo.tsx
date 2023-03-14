@@ -1,4 +1,8 @@
-const Logo = ({ styles }) => {
+type StyleProps = {
+  styles: string;
+};
+
+const Logo = ({ styles }: StyleProps) => {
   return (
     <svg
       className={styles}
