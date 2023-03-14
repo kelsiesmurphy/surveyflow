@@ -39,14 +39,14 @@ I designed the Figma file for Surveyflow in 2020 whilst first practicing UX desi
 <!-- BUILT WITH -->
 ## Built With
 
-* NextJS
+* React
 * Typescript
 * TailwindCSS
-* Pocketbase
+* Supabase
 
 <!-- REFLECTIONS -->
 ## Reflections
-My personal goals for this project were to try out a different tech stack to one I was used to. I chose Next.js and Typescript as they are becoming popular within the industry and I personally believe they will become industry standards within the next few years. My next step for this project would be to implement the subscription functionality with Stripe, and market it to potential users.
+My personal goals for this project were to try build out a full stack application and learn some new tools in the process. I chose React and Typescript, and chose to use Supabase for the backend. This project is still in progress.
 
 <!-- GETTING STARTED -->
 ## Getting Started
