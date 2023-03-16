@@ -1,12 +1,40 @@
+import { supabase } from "../../supabaseClient";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { fluidBackground } from "../../assets/index.js"
+import { fluidBackground } from "../../assets/index.js";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) throw error;
+      console.log(data);
+      alert("Thanks for logging in!");
+    } catch (error: any) {
+      alert(error.error_description || error.message);
+    } finally {
+      setLoading(false);
+      setEmail("")
+      setPassword("")
+    }
+  };
+
   return (
     <div className="flex justify-between">
       <div className="flex flex-1 flex-col px-4">
-        <div className="flex flex-1 items-center justify-center my-20">
-          <form className="flex max-w-sm flex-1 flex-col gap-5">
+        <div className="my-20 flex flex-1 items-center justify-center">
+          <form onSubmit={handleLogin} className="flex max-w-sm flex-1 flex-col gap-5">
             <Link to="/">
               <img src="/favicon.png" width="60" />
             </Link>
@@ -17,6 +45,8 @@ const Login = () => {
               <input
                 id="email-input"
                 type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
               />
@@ -26,6 +56,8 @@ const Login = () => {
               <input
                 id="password-input"
                 type="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••••••"
                 className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
               />
@@ -33,11 +65,11 @@ const Login = () => {
             <button className="rounded-lg border border-sky-600 bg-sky-600 px-4 py-2 text-center align-middle font-medium text-white shadow-sm transition hover:border-sky-700 hover:bg-sky-700">
               Log in
             </button>
-            <p className="text-slate-500 text-sm text-center">
+            <p className="text-center text-sm text-slate-500">
               Don't have an account?{" "}
               <Link
                 to="/signup"
-                className="font-medium text-sky-600 hover:text-sky-700 hover:underline transition-colors"
+                className="font-medium text-sky-600 transition-colors hover:text-sky-700 hover:underline"
               >
                 Sign up
               </Link>
@@ -52,7 +84,7 @@ const Login = () => {
         <img className="h-full w-full object-cover" src={fluidBackground} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
