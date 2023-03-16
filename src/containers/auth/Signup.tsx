@@ -66,7 +66,7 @@ const Signup = ({ navigate }: any) => {
         <div className="my-20 flex flex-1 items-center justify-center">
           <form
             onSubmit={handleSignup}
-            className="flex max-w-sm flex-1 flex-col gap-5"
+            className="flex max-w-md flex-1 flex-col gap-5"
           >
             <Link to="/">
               <img src="/favicon.png" width="60" />
@@ -78,8 +78,8 @@ const Signup = ({ navigate }: any) => {
               Find out more about your customers today and start building your
               first survey.
             </p>
-            <div className="flex gap-4">
-              <div className="flex flex-col gap-1.5">
+            <div className="flex flex-wrap justify-between gap-4">
+              <div className="flex flex-1 flex-col gap-1.5">
                 <label htmlFor="fname-input">First name</label>
                 <input
                   id="fname-input"
@@ -90,7 +90,7 @@ const Signup = ({ navigate }: any) => {
                   className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
                 />
               </div>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-1 flex-col gap-1.5">
                 <label htmlFor="lname-input">Last name</label>
                 <input
                   id="lname-input"

@@ -36,7 +36,7 @@ const Login = ({ navigate }: any) => {
         <div className="my-20 flex flex-1 items-center justify-center">
           <form
             onSubmit={handleLogin}
-            className="flex max-w-sm flex-1 flex-col gap-5"
+            className="flex max-w-md flex-1 flex-col gap-5"
           >
             <Link to="/">
               <img src="/favicon.png" width="60" />
