@@ -1,9 +1,9 @@
 import { supabase } from "../../supabaseClient";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { fluidBackground } from "../../assets/index.js";
 
-const Signup = () => {
+const Signup = ({ navigate }: any) => {
   const [loading, setLoading] = useState(false);
   const [fname, setFName] = useState("");
   const [lname, setLName] = useState("");
@@ -11,9 +11,31 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = async (e:any) => {
-    e.preventDefault();
+  const createUserProfile = async (data: any) => {
+    console.log(data);
+    try {
+      await supabase.from("user_profile").insert([
+        {
+          id: data?.user?.id,
+          fname: fname,
+          lname: lname,
+        },
+      ]);
+      const companyData = await supabase
+        .from("company")
+        .insert([{ name: company, owner_id: data?.user?.id }])
+        .select();
+      await supabase
+        .from("user_profile")
+        .update({ company_id: companyData?.data?.[0]?.id })
+        .eq("id", data?.user?.id);
+    } catch (error: any) {
+      alert(error.error_description || error.message);
+    }
+  };
 
+  const handleSignup = async (e: any) => {
+    e.preventDefault();
     try {
       setLoading(true);
       const { data, error } = await supabase.auth.signUp({
@@ -21,23 +43,20 @@ const Signup = () => {
         password: password,
         options: {
           emailRedirectTo: "/dashboard",
-          data: {
-            fname: fname,
-            lname: lname,
-          }
         },
       });
+      createUserProfile(data);
       if (error) throw error;
-      alert("Thanks for signing up!");
-    } catch (error:any) {
+      navigate("/dashboard");
+    } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
-      setFName("")
-      setLName("")
-      setEmail("")
-      setPassword("")
-      setCompany("")
+      setFName("");
+      setLName("");
+      setEmail("");
+      setPassword("");
+      setCompany("");
     }
   };
 
@@ -45,7 +64,10 @@ const Signup = () => {
     <div className="flex justify-between">
       <div className="flex flex-1 flex-col px-4">
         <div className="my-20 flex flex-1 items-center justify-center">
-          <form onSubmit={handleSignup} className="flex max-w-sm flex-1 flex-col gap-5">
+          <form
+            onSubmit={handleSignup}
+            className="flex max-w-sm flex-1 flex-col gap-5"
+          >
             <Link to="/">
               <img src="/favicon.png" width="60" />
             </Link>

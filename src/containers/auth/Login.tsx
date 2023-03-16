@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { fluidBackground } from "../../assets/index.js";
 
-const Login = () => {
+const Login = ({ navigate }: any) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,13 +20,13 @@ const Login = () => {
 
       if (error) throw error;
       console.log(data);
-      alert("Thanks for logging in!");
+      navigate("/dashboard");
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
-      setEmail("")
-      setPassword("")
+      setEmail("");
+      setPassword("");
     }
   };
 
@@ -34,7 +34,10 @@ const Login = () => {
     <div className="flex justify-between">
       <div className="flex flex-1 flex-col px-4">
         <div className="my-20 flex flex-1 items-center justify-center">
-          <form onSubmit={handleLogin} className="flex max-w-sm flex-1 flex-col gap-5">
+          <form
+            onSubmit={handleLogin}
+            className="flex max-w-sm flex-1 flex-col gap-5"
+          >
             <Link to="/">
               <img src="/favicon.png" width="60" />
             </Link>
@@ -46,7 +49,7 @@ const Login = () => {
                 id="email-input"
                 type="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
               />
@@ -57,7 +60,7 @@ const Login = () => {
                 id="password-input"
                 type="password"
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
                 className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
               />
