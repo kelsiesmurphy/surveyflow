@@ -12,7 +12,7 @@ const IndexNavigation = ({session}:any) => {
         <Logo styles={"text-white sm:text-sky-700"} />
         <ul className="hidden gap-4 sm:flex">
           <li>
-            <a href="/about" className="text-sky-700">
+            <a href="#about" className="text-sky-700">
               About
             </a>
           </li>

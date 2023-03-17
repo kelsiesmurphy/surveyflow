@@ -1,12 +1,9 @@
-// import { Player } from "@lottiefiles/react-lottie-player";
-// import { animation } from "@/public";
-// // import Lottie from "./Lottie";
-
-import { Link } from "react-router-dom";
+import Lottie from "react-lottie-player";
+import { animation } from "../../assets";
 
 const About = () => {
   return (
-    <section id="about" className="flex flex-col items-center px-4 py-20">
+    <section id="about" className="flex flex-col gap-16 items-center px-4 py-20">
       <div className="flex max-w-3xl flex-col gap-6 text-center">
         <h2 className="text-2xl font-medium text-slate-800 md:text-4xl">
           Find out more from your customers
@@ -30,12 +27,7 @@ const About = () => {
           </a>
         </div>
       </div>
-      {/* <Player
-        src={animation}
-        className="player"
-        loop
-        autoplay
-      /> */}
+      <Lottie loop animationData={animation} play className="max-w-7xl" />
     </section>
   );
 };

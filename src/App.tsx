@@ -12,25 +12,36 @@ function App() {
   const navigate = useNavigate();
 
   const [session, setSession] = useState<any | null>(null);
+  const [userProfile, setUserProfile] = useState<any | null>(null);
+
+  const getUser = async (id: any) => {
+    const { data, error } = await supabase
+      .from("user_profile")
+      .select()
+      .eq("id", id);
+    setUserProfile(data?.[0])
+  };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      getUser(session?.user.id);
     });
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      getUser(session?.user.id);
     });
   }, []);
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<IndexContainer session={session}/>} />
+        <Route path="/" element={<IndexContainer session={session} />} />
         <Route path="/signup" element={<Signup navigate={navigate} />} />
         <Route path="/login" element={<Login navigate={navigate} />} />
         <Route
           path="/dashboard"
-          element={<DashboardContainer navigate={navigate} />}
+          element={<DashboardContainer navigate={navigate} userProfile={userProfile} />}
         />
         <Route path="/editor/:id" element={<EditorContainer />} />
       </Routes>

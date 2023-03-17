@@ -5,3 +5,21 @@
 html {
     scroll-behavior: smooth;
   }
+
+/* Add Event Modal */
+.customModal {
+  max-width: 720px;
+  border-radius: 12px;
+}
+.react-responsive-modal-modal {
+  display: auto;
+}
+
+.twitter-picker {
+  box-shadow: none !important;
+  border: none !important;
+}
+.twitter-picker>* {
+  box-shadow: none !important;
+  border: none !important;
+}
