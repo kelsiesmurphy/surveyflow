@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Logo from "./Logo";
+import Logo from "../Logo";
 import { Link } from "react-router-dom";
 import { menu, close } from "../../assets/index.js";
 
-const Navigation = () => {
+const IndexNavigation = ({session}:any) => {
   const [toggle, openMobileMenu] = useState(false);
 
   return (
@@ -23,10 +23,10 @@ const Navigation = () => {
           </li>
         </ul>
       </div>
-      <div className="hidden items-center gap-4 sm:flex">
+      {!session && <div className="flex items-center gap-4">
         <Link
           to="/login"
-          className="rounded-lg bg-transparent px-4 py-2 align-middle font-medium text-slate-700 transition hover:bg-slate-100 lg:text-white"
+          className="hidden sm:block rounded-lg bg-transparent px-4 py-2 align-middle font-medium text-slate-700 transition hover:bg-slate-100 lg:text-white"
         >
           Log in
         </Link>
@@ -36,15 +36,15 @@ const Navigation = () => {
         >
           Sign up
         </Link>
-      </div>
-      <div
-        onClick={() => openMobileMenu(!toggle)}
-        className="flex items-center p-2 sm:hidden"
-      >
-        <img src={toggle ? close : menu} />
-      </div>
+      </div>}
+      {session && <Link
+          to="/dashboard"
+          className="rounded-lg border border-slate-300 bg-white px-4 py-2 align-middle font-medium  text-slate-800 shadow-sm transition hover:bg-slate-200"
+        >
+          Dashboard
+        </Link>}
     </nav>
   );
 };
 
-export default Navigation;
+export default IndexNavigation;

@@ -4,10 +4,10 @@ import Footer from "./Footer";
 import Hero from "./Hero";
 import Pricing from "./Pricing";
 
-const IndexContainer = () => {
+const IndexContainer = ({session}:any) => {
   return (
     <>
-      <Hero />
+      <Hero session={session}/>
       <About />
       <Pricing />
       <CallToAction />

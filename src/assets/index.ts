@@ -2,6 +2,7 @@ import favicon from "./favicon.png";
 import phoneDemo from "./phone-demo.png"
 import phone from "./iphone.png"
 import logo from "./surveyflow-logo.svg";
+import logomark from "./surveyflow-logomark.svg"
 import animation from "./animations/animation.json"
 import fluidBackground from "./animations/fluid-background.svg"
 import fluidBackgroundDark from "./animations/fluid-background-dark.svg"
@@ -16,6 +17,7 @@ export {
   phoneDemo,
   phone,
   logo,
+  logomark,
   animation,
   fluidBackground,
   fluidBackgroundDark,

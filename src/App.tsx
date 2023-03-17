@@ -24,13 +24,14 @@ function App() {
 
   return (
     <>
-      {session ? "Logged In" : "Logged Out"}
-      <button onClick={() => supabase.auth.signOut().then(() => navigate("/"))} className="bg-green-500 p-2">log out</button>
       <Routes>
-        <Route path="/" element={<IndexContainer />} />
+        <Route path="/" element={<IndexContainer session={session}/>} />
         <Route path="/signup" element={<Signup navigate={navigate} />} />
         <Route path="/login" element={<Login navigate={navigate} />} />
-        <Route path="/dashboard" element={<DashboardContainer />} />
+        <Route
+          path="/dashboard"
+          element={<DashboardContainer navigate={navigate} />}
+        />
         <Route path="/editor/:id" element={<EditorContainer />} />
       </Routes>
     </>

@@ -17,7 +17,9 @@ const Pricing = () => {
     >
       <div className="flex max-w-screen-xl flex-1 flex-wrap justify-between gap-6">
         <div className="flex max-w-md flex-col gap-6">
-          <h2 className="text-4xl font-medium text-slate-800">Pricing plans</h2>
+          <h2 className="text-2xl font-medium text-slate-800 md:text-4xl">
+            Pricing plans
+          </h2>
           <p className="text-lg font-light text-slate-500">
             Simple, transparent pricing that grows with you. Try our free plan,
             or go straight to our Business plan.

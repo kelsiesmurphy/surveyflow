@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "./Logo";
+import Logo from "../Logo";
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
           className="flex max-w-sm flex-1 flex-col gap-2 "
         >
           <h5>Stay up to date</h5>
-          <div className="xs:flex-row flex flex-col gap-3">
+          <div className="flex-col md:flex-row flex gap-3">
             <input
               type="email"
               placeholder="Enter your email"

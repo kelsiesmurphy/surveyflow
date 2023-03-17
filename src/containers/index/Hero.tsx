@@ -1,24 +1,24 @@
 import { Link } from "react-router-dom";
-import Navigation from "./Navigation";
+import IndexNavigation from "./IndexNavigation";
 import styles from "./styles.module.css";
 import { phone } from "../../assets/index.js";
 
-const Hero = () => {
+const Hero = ({session}:any) => {
   return (
     <header className={`${styles["hero-section"]} min-h-screen`}>
-      <Navigation />
+      <IndexNavigation session={session}/>
       <div className="min-h-screen flex items-center">
         <div className="mb-40 flex basis-full flex-wrap items-center justify-around gap-16 py-8 px-4">
           <div className="flex max-w-md flex-col gap-4 py-16">
-            <h1 className="text-5xl font-medium tracking-wide text-white transition-all sm:text-sky-700 md:text-6xl">
+            <h1 className="text-4xl font-medium tracking-wide text-white transition-all sm:text-sky-700 md:text-6xl">
               Surveys should be simple.
             </h1>
-            <h2 className="text-xl font-light text-white sm:text-sky-700">
+            <h2 className="text-lg md:text-xl font-light text-white sm:text-sky-700">
               Surveyflow creates beautiful surveys in minutes that helps you
               understand your customers on a deeper level.
             </h2>
             <form action="/signup" className="flex flex-col gap-2">
-              <div className="xs:flex-row flex flex-col gap-3">
+              <div className="md:flex-row flex flex-col gap-3">
                 <input
                   type="email"
                   placeholder="Enter your email"

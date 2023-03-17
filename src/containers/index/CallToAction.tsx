@@ -5,7 +5,7 @@ const CallToAction = () => {
     <div className="flex items-center justify-center px-4 py-20">
       <div className="flex max-w-screen-xl flex-1 flex-wrap justify-between gap-8 rounded-2xl bg-sky-800 py-16 px-4 shadow-sm transition-all md:p-16">
         <div className="flex flex-col gap-4">
-          <h2 className="text-4xl font-medium text-white">
+          <h2 className="text-2xl font-medium text-white md:text-4xl">
             Start on our free plan today.
           </h2>
           <p className="text-lg text-sky-200">
