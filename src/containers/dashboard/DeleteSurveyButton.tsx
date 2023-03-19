@@ -7,19 +7,28 @@ import { supabase } from "../../supabaseClient";
 const DeleteSurveyButton = ({ survey, getSurveys }: any) => {
   const [open, setOpen] = useState(false);
 
-  const deleteSurvey = async (survey: any) => {
-    const { error } = await supabase.from("survey").delete().eq("id", survey.id);
-    getSurveys()
+  const handleClick = (e:any) => {
+    e.stopPropagation();
+    e.preventDefault()
+    setOpen(true)
+  }
+
+  const deleteSurvey = async (e:any) => {
+    const { error } = await supabase
+      .from("survey")
+      .delete()
+      .eq("id", survey.id);
+    getSurveys();
   };
 
   return (
     <>
-      <button className="p-3" onClick={() => setOpen(true)}>
+      <div className="p-3" onClick={handleClick}>
         <Trash2
           size={20}
           className="cursor-pointer text-white transition-colors hover:text-red-400"
         />
-      </button>
+      </div>
 
       <Modal
         open={open}
@@ -49,7 +58,7 @@ const DeleteSurveyButton = ({ survey, getSurveys }: any) => {
             </button>
             <button
               className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-red-600 bg-red-600 py-2.5 px-4 text-white shadow-sm outline-slate-900 transition-colors hover:border-red-700 hover:bg-red-700"
-              onClick={() => deleteSurvey(survey)}
+              onClick={deleteSurvey}
             >
               Delete
             </button>
