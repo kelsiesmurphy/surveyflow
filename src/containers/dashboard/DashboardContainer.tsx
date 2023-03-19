@@ -1,11 +1,13 @@
 import Navigation from "../Navigation";
 import DashboardHome from "./DashboardHome";
 
-const DashboardContainer = ({ navigate, userProfile }:any) => {
+
+const DashboardContainer = ({ navigate, userProfile }: any) => {
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation navigate={navigate}/>
-      <div className="bg-[#F9FAFB] flex-1 flex justify-center px-4 py-12">
+    <div className="flex min-h-screen flex-col">
+      <Navigation navigate={navigate} />
+      <div className="flex flex-1 justify-center bg-[#F9FAFB] px-4 py-12">
         <DashboardHome userProfile={userProfile}/>
       </div>
     </div>

@@ -4,6 +4,7 @@ import phone from "./iphone.png"
 import logo from "./surveyflow-logo.svg";
 import logomark from "./surveyflow-logomark.svg"
 import animation from "./animations/animation.json"
+import emptyState from "./animations/empty_state.json"
 import fluidBackground from "./animations/fluid-background.svg"
 import fluidBackgroundDark from "./animations/fluid-background-dark.svg"
 import fluidBackgroundMobile from "./animations/fluid-background-mobile.svg"
@@ -19,6 +20,7 @@ export {
   logo,
   logomark,
   animation,
+  emptyState,
   fluidBackground,
   fluidBackgroundDark,
   fluidBackgroundMobile,

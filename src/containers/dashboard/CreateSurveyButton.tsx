@@ -5,28 +5,82 @@ import { useState } from "react";
 import { supabase } from "../../supabaseClient";
 import { TwitterPicker } from "react-color";
 
-const CreateSurveyButton = ({ userProfile }: any) => {
+const CreateSurveyButton = ({ userProfile, getSurveys, styles }: any) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [colour, setColour] = useState("");
 
-  const createSurveyQuestions = async () => {
-    console.log("test");
-    
-  }
+  const createSurveyQuestions = async (data: any) => {
+    await supabase.from("survey_question").insert([
+      {
+        title: "Please rate your recent experience with Surveyflow",
+        question_type_id: 1,
+        survey_id: data[0].id,
+        company_id: userProfile.company_id,
+        sort_order: 1,
+      },
+      {
+        title: "Before we start, what do you value in a company?",
+        question_type_id: 2,
+        survey_id: data[0].id,
+        company_id: userProfile.company_id,
+        sort_order: 2,
+      },
+      {
+        title: "Please rate your experience shopping with us.",
+        question_type_id: 3,
+        survey_id: data[0].id,
+        company_id: userProfile.company_id,
+        sort_order: 3,
+      },
+      {
+        title: "Would you buy from us again in future?",
+        question_type_id: 4,
+        survey_id: data[0].id,
+        company_id: userProfile.company_id,
+        sort_order: 4,
+      },
+      {
+        title:
+          "Thank you! Here is a 10% discount on your next order as a thank you for taking the time to complete this!",
+        question_type_id: 5,
+        survey_id: data[0].id,
+        company_id: userProfile.company_id,
+        sort_order: 5,
+      },
+    ]);
+  };
 
   const createSurvey = async () => {
     try {
-      const { data, error } = await supabase.from("survey").insert([
-        {
+      const { data, error } = await supabase
+        .from("survey")
+        .insert({
           title: title,
           colour: colour,
           company_id: userProfile.company_id,
-          starter_image:
-            "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        },
-      ]);
-      createSurveyQuestions();
+          starter_img:
+            "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-storage/starter.jpeg",
+          buy_again_img:
+            "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-storage/buy_again.jpeg",
+          discount_code: "EX4MPLEC0DE",
+          values: [
+            { 1: "Comfort" },
+            { 2: "Sustainability" },
+            { 3: "Material Quality" },
+            { 4: "Personality" },
+            { 5: "Authentic" },
+            { 6: "Customer Service" },
+            { 7: "Colours" },
+            { 8: "Price" },
+            { 9: "Warmth" },
+            { 10: "Ethically made" },
+            { 11: "Creativity" },
+          ],
+        })
+        .select();
+      createSurveyQuestions(data);
+      getSurveys();
     } catch (error: any) {
       alert(error.error_description || error.message);
     }
@@ -39,19 +93,16 @@ const CreateSurveyButton = ({ userProfile }: any) => {
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
-      setTitle("")
-      setColour("")
+      setTitle("");
+      setColour("");
       setOpen(false);
     }
   };
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="flex items-center gap-2 rounded-lg border border-sky-600 bg-sky-600 px-4 py-2 text-center align-middle font-medium text-white shadow-sm transition hover:border-sky-700 hover:bg-sky-700"
-      >
-        <Plus size={24} />
+      <button onClick={() => setOpen(true)} className={styles}>
+        <Plus size={20} />
         Create new
       </button>
 
@@ -85,6 +136,7 @@ const CreateSurveyButton = ({ userProfile }: any) => {
                   type="text"
                   name="title"
                   value={title}
+                  required
                   onChange={(e) => setTitle(e.target.value)}
                   className="min-w-[280px] max-w-[448px] flex-1 rounded-lg border border-slate-300 py-3 px-3.5 shadow-sm outline-slate-900 placeholder:text-slate-500"
                   id="title"
