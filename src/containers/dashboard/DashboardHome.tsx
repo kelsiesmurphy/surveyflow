@@ -35,7 +35,8 @@ const DashboardHome = ({ userProfile }: any) => {
         <li key={index}>
           <Link
             to={`/editor/${survey.id}/create`}
-            className={`h-[208px] w-[280px] rounded-2xl bg-[url('${survey.starter_img}')] flex items-end border border-slate-200 bg-cover bg-center shadow-sm`}
+            className={`h-[208px] w-[280px] rounded-2xl flex items-end border border-slate-200 bg-cover bg-center shadow-sm`}
+            style={{backgroundImage: `url(${survey.starter_img})`}}
           >
             <div className="flex h-16 flex-1 items-center justify-between gap-4 rounded-b-2xl border-t border-t-slate-300 bg-slate-600/30 p-1 px-5 backdrop-blur-sm transition-all hover:h-20">
               <div className="flex flex-col gap-1">
