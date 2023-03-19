@@ -12,7 +12,7 @@ const EditorContainer = ({ navigate }: any) => {
   const [survey, setSurvey] = useState({});
   const [questions, setQuestions] = useState<{ [x: string]: any }[] | null>([]);
 
-  const getQuestions = async (surveyId:any) => {
+  const getQuestions = async (surveyId: any) => {
     try {
       const { data, error } = await supabase
         .from("survey_question")
@@ -50,11 +50,14 @@ const EditorContainer = ({ navigate }: any) => {
     <div className="flex h-screen flex-col">
       <EditorNavigation navigate={navigate} />
       <div className="flex h-[calc(100%_-_5rem)] flex-1 bg-[#F9FAFB]">
-      <Routes>
-        <Route path="create" element={<CreateScreen questions={questions} survey={survey} />} />
-        <Route path="create" element={<ShareScreen survey={survey} />} />
-        <Route path="create" element={<ResultsScreen survey={survey} />} />
-      </Routes>
+        <Routes>
+          <Route
+            path="create"
+            element={<CreateScreen questions={questions} survey={survey} />}
+          />
+          <Route path="create" element={<ShareScreen survey={survey} />} />
+          <Route path="create" element={<ResultsScreen survey={survey} />} />
+        </Routes>
       </div>
     </div>
   );
