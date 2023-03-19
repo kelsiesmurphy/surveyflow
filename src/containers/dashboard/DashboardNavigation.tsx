@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { logomark } from "../assets";
+import { logomark } from "../../assets";
 import { Menu, X } from "react-feather";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../../supabaseClient";
 import { Link } from "react-router-dom";
 
-const Navigation = ({ navigate }:any) => {
+const DashboardNavigation = ({ navigate }: any) => {
   const [toggle, openMobileMenu] = useState(false);
 
   return (
-    <nav className="flex basis-full justify-between px-4 py-5 transition-all md:px-24 shadow-md">
+    <nav className="z-10 flex justify-between px-4 py-5 shadow-sm transition-all md:px-24">
       <Link to="/" className="flex max-w-6xl flex-1 items-center gap-6">
-        <img src={logomark} className="w-[34px] aspect-square"/>
+        <img src={logomark} className="aspect-square w-[34px]" />
       </Link>
       <div className="hidden items-center gap-4 sm:flex">
         <button
@@ -30,4 +30,4 @@ const Navigation = ({ navigate }:any) => {
   );
 };
 
-export default Navigation;
+export default DashboardNavigation;

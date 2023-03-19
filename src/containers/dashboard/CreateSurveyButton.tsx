@@ -18,6 +18,8 @@ const CreateSurveyButton = ({ userProfile, getSurveys, styles }: any) => {
         survey_id: data[0].id,
         company_id: userProfile.company_id,
         sort_order: 1,
+        question_type_title: "Welcome",
+        question_type_img: "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-storage/Welcome.svg"
       },
       {
         title: "Before we start, what do you value in a company?",
@@ -25,6 +27,8 @@ const CreateSurveyButton = ({ userProfile, getSurveys, styles }: any) => {
         survey_id: data[0].id,
         company_id: userProfile.company_id,
         sort_order: 2,
+        question_type_title: "Values",
+        question_type_img: "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-storage/Values.svg"
       },
       {
         title: "Please rate your experience shopping with us.",
@@ -32,6 +36,8 @@ const CreateSurveyButton = ({ userProfile, getSurveys, styles }: any) => {
         survey_id: data[0].id,
         company_id: userProfile.company_id,
         sort_order: 3,
+        question_type_title: "Rating",
+        question_type_img: "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-storage/Rating.svg"
       },
       {
         title: "Would you buy from us again in future?",
@@ -39,6 +45,8 @@ const CreateSurveyButton = ({ userProfile, getSurveys, styles }: any) => {
         survey_id: data[0].id,
         company_id: userProfile.company_id,
         sort_order: 4,
+        question_type_title: "Return",
+        question_type_img: "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-storage/Return.svg"
       },
       {
         title:
@@ -47,6 +55,8 @@ const CreateSurveyButton = ({ userProfile, getSurveys, styles }: any) => {
         survey_id: data[0].id,
         company_id: userProfile.company_id,
         sort_order: 5,
+        question_type_title: "Farewell",
+        question_type_img: "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-storage/Fairwell.svg"
       },
     ]);
   };

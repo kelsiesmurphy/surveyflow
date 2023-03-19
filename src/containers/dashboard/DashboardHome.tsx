@@ -1,7 +1,7 @@
-import CreateSurveyButton from "./CreateSurveyButton";
-import { supabase } from "../../supabaseClient";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from "../../supabaseClient";
+import CreateSurveyButton from "./CreateSurveyButton";
 import DeleteSurveyButton from "./DeleteSurveyButton";
 import EmptyState from "./EmptyState";
 
@@ -22,7 +22,7 @@ const DashboardHome = ({ userProfile }: any) => {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {    
     if (userProfile) {
       getSurveys();
     }
@@ -34,7 +34,7 @@ const DashboardHome = ({ userProfile }: any) => {
       return (
         <li key={index}>
           <Link
-            to={`/editor/${survey.id}`}
+            to={`/editor/${survey.id}/create`}
             className={`h-[208px] w-[280px] rounded-2xl bg-[url('${survey.starter_img}')] flex items-end border border-slate-200 bg-cover bg-center shadow-sm`}
           >
             <div className="flex h-16 flex-1 items-center justify-between gap-4 rounded-b-2xl border-t border-t-slate-300 bg-slate-600/30 p-1 px-5 backdrop-blur-sm transition-all hover:h-20">

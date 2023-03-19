@@ -16,7 +16,8 @@
     "react-feather": "^2.0.10",
     "react-lottie-player": "^1.5.4",
     "react-responsive-modal": "^6.4.1",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

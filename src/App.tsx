@@ -7,6 +7,7 @@ import Login from "./containers/auth/Login";
 import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import { useNavigate } from "react-router-dom";
+import CreateScreen from "./containers/editor/CreateScreen";
 
 function App() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function App() {
       .from("user_profile")
       .select()
       .eq("id", id);
-    setUserProfile(data?.[0])
+    setUserProfile(data?.[0]);
   };
 
   useEffect(() => {
@@ -41,9 +42,14 @@ function App() {
         <Route path="/login" element={<Login navigate={navigate} />} />
         <Route
           path="/dashboard"
-          element={<DashboardContainer navigate={navigate} userProfile={userProfile} />}
+          element={
+            <DashboardContainer navigate={navigate} userProfile={userProfile} />
+          }
         />
-        <Route path="/editor/:id" element={<EditorContainer />} />
+        <Route
+          path="/editor/:id/*"
+          element={<EditorContainer navigate={navigate} />}
+        />
       </Routes>
     </>
   );
