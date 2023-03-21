@@ -26,7 +26,7 @@ const IndexNavigation = ({session}:any) => {
       {!session && <div className="flex items-center gap-4">
         <Link
           to="/login"
-          className="hidden sm:block rounded-lg bg-transparent px-4 py-2 align-middle font-medium text-slate-700 transition hover:bg-slate-100 lg:text-white"
+          className="hidden sm:block rounded-lg bg-transparent px-4 py-2 align-middle font-medium text-slate-700 transition hover:bg-slate-100 lg:text-white lg:hover:bg-sky-700"
         >
           Log in
         </Link>

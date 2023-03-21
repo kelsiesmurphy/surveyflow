@@ -42,7 +42,6 @@ const CreateScreen = ({ questions, survey }: any) => {
   }
 
   return (
-    <div>
       <div className="flex flex-col bg-white">
         <ul className="flex flex-col overflow-y-auto pt-4 scrollbar-hide">
           {typeNodes}
@@ -72,7 +71,6 @@ const CreateScreen = ({ questions, survey }: any) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

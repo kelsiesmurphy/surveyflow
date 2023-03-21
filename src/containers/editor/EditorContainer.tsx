@@ -55,8 +55,8 @@ const EditorContainer = ({ navigate }: any) => {
             path="create"
             element={<CreateScreen questions={questions} survey={survey} />}
           />
-          <Route path="create" element={<ShareScreen survey={survey} />} />
-          <Route path="create" element={<ResultsScreen survey={survey} />} />
+          {/* <Route path="share" element={<ShareScreen survey={survey} />} /> */}
+          <Route path="results" element={<ResultsScreen survey={survey} />} />
         </Routes>
       </div>
     </div>
