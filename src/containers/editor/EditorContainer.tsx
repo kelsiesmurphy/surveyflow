@@ -7,7 +7,7 @@ import CreateScreen from "./CreateScreen";
 import ShareScreen from "./ShareScreen";
 import ResultsScreen from "./ResultsScreen";
 
-const EditorContainer = ({ navigate }: any) => {
+const EditorContainer = ({ navigate }:{ [x: string]: any }) => {
   const { id } = useParams();
   const [survey, setSurvey] = useState({});
   const [questions, setQuestions] = useState<{ [x: string]: any }[] | null>([]);

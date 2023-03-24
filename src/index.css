@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 html {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
 
 /* Add Event Modal */
 .customModal {

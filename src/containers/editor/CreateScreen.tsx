@@ -1,9 +1,16 @@
 import { Monitor, Smartphone } from "react-feather";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CreateMain from "./CreateMain";
 
-const CreateScreen = ({ questions, survey }: any) => {
+const CreateScreen = ({ questions, survey }:{ [x: string]: any }) => {
   const [deviceSize, setDeviceSize] = useState("mobile");
-  const [selectedQuestion, setSelectedQuestion] = useState<number>(1);
+  const [selectedQuestion, setSelectedQuestion] = useState<{ [x: string]: any }>({});
+
+  useEffect(() => {
+    if (questions[0]) {
+      setSelectedQuestion(questions[0]);
+    }
+  }, [questions]);
 
   let typeNodes: any;
   if (questions) {
@@ -13,18 +20,18 @@ const CreateScreen = ({ questions, survey }: any) => {
           <li
             key={index}
             className={`mx-4 my-2 flex min-h-[151px] w-[206px] cursor-pointer flex-col rounded-2xl bg-[#F3F6F8] shadow-sm ${
-              question.sort_order == selectedQuestion
+              question.sort_order == selectedQuestion.sort_order
                 ? "border-2 border-sky-700"
                 : "border border-slate-200"
             } transition-all`}
             onClick={() => {
-              setSelectedQuestion(question.sort_order);
+              setSelectedQuestion(question);
             }}
           >
             <div className="flex flex-1 items-center justify-center p-2">
               <img
                 src={question.question_type_img}
-                className="aspect-[72/155] w-[42px] shadow-sm"
+                className="aspect-[72/155] w-[42px] rounded shadow-sm"
               />
             </div>
             <div className="flex justify-between rounded-b-2xl bg-white py-2 px-4 shadow-sm">
@@ -42,6 +49,7 @@ const CreateScreen = ({ questions, survey }: any) => {
   }
 
   return (
+    <div className="flex flex-1">
       <div className="flex flex-col bg-white">
         <ul className="flex flex-col overflow-y-auto pt-4 scrollbar-hide">
           {typeNodes}
@@ -71,6 +79,14 @@ const CreateScreen = ({ questions, survey }: any) => {
           </div>
         </div>
       </div>
+      <CreateMain
+        survey={survey}
+        selectedQuestion={selectedQuestion}
+        deviceSize={deviceSize}
+        questions={questions}
+        setSelectedQuestion={setSelectedQuestion}
+      />
+    </div>
   );
 };
 
