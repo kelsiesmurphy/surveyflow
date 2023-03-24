@@ -17,12 +17,12 @@ const Footer = () => {
               placeholder="Enter your email"
               className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
             />
-            <a
-              href="/auth"
+            <Link
+              to="/signup"
               className="rounded-lg border border-sky-600 bg-sky-600 px-4 py-2 text-center align-middle font-medium text-white shadow-sm transition hover:border-sky-700 hover:bg-sky-700"
             >
               Subscribe
-            </a>
+            </Link>
           </div>
         </form>
       </div>

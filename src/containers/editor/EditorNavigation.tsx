@@ -9,7 +9,7 @@ const EditorNavigation = ({ navigate }: any) => {
   const [toggle, openMobileMenu] = useState(false);
 
   return (
-    <nav className="z-10 flex justify-between px-4 py-5 shadow-sm transition-all md:px-24">
+    <nav className="flex z-10 bg-white justify-between px-4 py-5 shadow-sm transition-all md:px-24">
       <div className="flex gap-8 items-center">
         <Link
           to="/dashboard"

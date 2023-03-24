@@ -15,7 +15,7 @@ const SurveyContainer = ({ survey, selectedQuestion }:{ [x: string]: any }) => {
   }
 
   function EnumState({ state }:any) {
-    return <div>{ENUM_STATES[state]}</div>;
+    return <>{ENUM_STATES[state]}</>;
   }
 
   return (
