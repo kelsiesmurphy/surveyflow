@@ -6,7 +6,7 @@ const CreateScreen = ({ questions, survey }:{ [x: string]: any }) => {
   const [deviceSize, setDeviceSize] = useState("mobile");
   const [selectedQuestion, setSelectedQuestion] = useState<{ [x: string]: any }>({});
 
-  useEffect(() => {
+  useEffect(() => {    
     if (questions[0]) {
       setSelectedQuestion(questions[0]);
     }
