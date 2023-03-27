@@ -38,7 +38,9 @@ const CreateMain = ({
             className="h-full bg-sky-600 transition-all"
           ></div>
         </div>
-        <SurveyContainer survey={survey} selectedQuestion={selectedQuestion} />
+        <div className="flex flex-1 justify-center">
+          <SurveyContainer survey={survey} selectedQuestion={selectedQuestion} deviceSize={deviceSize} />
+        </div>
         <div className="flex gap-4 p-4">
           {selectedQuestion.sort_order !== 1 && (
             <button
