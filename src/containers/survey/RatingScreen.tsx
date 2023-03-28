@@ -1,25 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const RatingScreen = ({ selectedQuestion, survey, rating, review, setRating, setReview }: { [x: string]: any }) => {
+const RatingScreen = ({
+  selectedQuestion,
+  survey,
+  rating,
+  review,
+  setRating,
+  setReview,
+  handleReviewChange
+}: {
+  [x: string]: any;
+}) => {
   const stars = [1, 2, 3, 4, 5];
 
-  const handleRating = (star:number) => {
-    setRating(star)
-  }
 
-  const handleChange = (e:any) => {
-    console.log(e);
-    
-    e.preventDefault()
-    setReview(e.target.value)
-  }
+  // const [duplicateReview, setDuplicateReview] = useState<string>("");
+
+  // useEffect(() => {
+  //   setReview(duplicateReview)
+  // }, [duplicateReview])
+  
+    // const handleReview = (event: any) => {
+    //   setDuplicateReview(event.target.value);
+    // };
+
+  const handleRating = (star: number) => {
+    setRating(star);
+  };
 
   const starsNode = stars.map((star, index) => {
     return (
       <button key={index} onClick={() => handleRating(star)}>
         <svg
           aria-hidden="true"
-          className={`h-12 w-12 hover:text-yellow-300 transition-colors ${star <= rating ? "text-yellow-400" : "text-slate-100"}`}
+          className={`h-12 w-12 transition-colors hover:text-yellow-300 ${
+            star <= rating ? "text-yellow-400" : "text-slate-100"
+          }`}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +58,7 @@ const RatingScreen = ({ selectedQuestion, survey, rating, review, setRating, set
       <div className="flex justify-center">{starsNode}</div>
       <textarea
         value={review}
-        onChange={handleChange}
+        onChange={handleReviewChange}
         className="flex-1 resize-none rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
         placeholder="Type here..."
       ></textarea>

@@ -30,6 +30,10 @@ const SurveyContainer = ({
     setSelectedValues(duplicateValues);
   };
 
+  const handleReviewChange = (e:any) => {
+    setReview(e.target.value)
+  }
+
   const ENUM_STATES: any = {
     Welcome: (
       <WelcomeScreen selectedQuestion={selectedQuestion} survey={survey} />
@@ -51,6 +55,7 @@ const SurveyContainer = ({
         rating={rating}
         setReview={setReview}
         setRating={setRating}
+        handleReviewChange={handleReviewChange}
       />
     ),
     Return: (
