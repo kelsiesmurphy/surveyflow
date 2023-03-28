@@ -7,7 +7,7 @@ import Login from "./containers/auth/Login";
 import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import { useNavigate } from "react-router-dom";
-import CreateScreen from "./containers/editor/CreateScreen";
+import SurveyContainer from "./containers/survey/SurveyContainer";
 
 function App() {
   const navigate = useNavigate();
@@ -49,6 +49,10 @@ function App() {
         <Route
           path="/editor/:id/*"
           element={<EditorContainer navigate={navigate} />}
+        />
+        <Route
+          path="/survey/:id/*"
+          element={<SurveyContainer />}
         />
       </Routes>
     </>

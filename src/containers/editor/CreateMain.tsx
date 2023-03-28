@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from "react-feather";
-import SurveyContainer from "../survey/SurveyContainer";
+import SurveyEditorContainer from "../surveyEditor/SurveyEditorContainer";
 
 const CreateMain = ({
   survey,
@@ -39,7 +39,7 @@ const CreateMain = ({
           ></div>
         </div>
         <div className="flex flex-1 justify-center">
-          <SurveyContainer survey={survey} selectedQuestion={selectedQuestion} deviceSize={deviceSize} />
+          <SurveyEditorContainer survey={survey} selectedQuestion={selectedQuestion} deviceSize={deviceSize} />
         </div>
         <div className="flex gap-4 p-4">
           {selectedQuestion.sort_order !== 1 && (
