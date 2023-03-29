@@ -7,16 +7,16 @@ const RatingScreen = ({
   setRating,
   review,
   setReview,
-  handleReviewChange
+  handleReviewChange,
 }: {
   [x: string]: any;
 }) => {
   const stars = [1, 2, 3, 4, 5];
   const [duplicateReview, setDuplicateReview] = useState<string>("");
-  
-    const handleReview = (event: any) => {
-      setDuplicateReview(event.target.value);
-    };
+
+  const handleReview = (event: any) => {
+    setDuplicateReview(event.target.value);
+  };
 
   const handleRating = (star: number) => {
     setRating(star);
@@ -27,7 +27,7 @@ const RatingScreen = ({
       <button key={index} onClick={() => handleRating(star)}>
         <svg
           aria-hidden="true"
-          className={`h-12 w-12 transition-colors hover:text-yellow-300 ${
+          className={`h-12 w-12 md:h-16 md:w-16 transition-colors hover:text-yellow-300 ${
             star <= rating ? "text-yellow-400" : "text-slate-100"
           }`}
           fill="currentColor"
@@ -44,7 +44,7 @@ const RatingScreen = ({
   return (
     <div className="flex h-full flex-col gap-4">
       <div className="flex justify-between gap-4">
-        <h1 className="text-lg font-semibold text-slate-900">
+        <h1 className="text-lg font-semibold text-slate-900 md:text-2xl">
           {selectedQuestion.title}
         </h1>
         <img src={survey.company_logo_img} className="h-16 w-16 rounded-lg" />

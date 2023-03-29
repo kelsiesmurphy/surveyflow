@@ -1,6 +1,6 @@
 import { Monitor, Smartphone } from "react-feather";
 import { useEffect, useState } from "react";
-import CreateMain from "./CreateMain";
+import CreateMain from "./SurveyWrapperEditor";
 
 const CreateScreen = ({ questions, survey }:{ [x: string]: any }) => {
   const [deviceSize, setDeviceSize] = useState("mobile");

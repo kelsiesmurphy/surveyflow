@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import { useNavigate } from "react-router-dom";
 import SurveyContainer from "./containers/survey/SurveyContainer";
+import CreateMain from "./containers/survey/SurveyWrapper";
 
 function App() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ function App() {
         />
         <Route
           path="/survey/:id/*"
-          element={<SurveyContainer />}
+          element={<CreateMain />}
         />
       </Routes>
     </>

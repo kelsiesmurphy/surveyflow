@@ -21,15 +21,13 @@ const ValuesScreen = ({
     return (
       <li
         key={index}
-        className={`rounded-full py-1 px-4 font-medium ${
+        className={`rounded-full py-1 md:py-2 md:text-lg px-4 font-medium ${
           selectedValues.includes(value)
             ? "bg-sky-700 text-sky-100"
             : "bg-sky-100 text-sky-700"
         } transition-colors duration-300`}
       >
-        <button onClick={() => handleValueChange(value)}>
-          {value}
-        </button>
+        <button onClick={() => handleValueChange(value)}>{value}</button>
       </li>
     );
   });
@@ -37,12 +35,12 @@ const ValuesScreen = ({
   return (
     <div className="flex h-full flex-col gap-4">
       <div className="flex justify-between gap-4">
-        <h1 className="text-lg font-semibold text-slate-900">
+        <h1 className="text-lg font-semibold text-slate-900 md:text-2xl">
           {selectedQuestion.title}
         </h1>
         <img src={survey.company_logo_img} className="h-16 w-16 rounded-lg" />
       </div>
-      <ul className="flex flex-wrap gap-3">{valueNodes}</ul>
+      <ul className="flex flex-wrap gap-3 md:gap-4">{valueNodes}</ul>
     </div>
   );
 };

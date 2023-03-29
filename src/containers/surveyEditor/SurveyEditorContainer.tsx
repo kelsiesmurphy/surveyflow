@@ -1,9 +1,9 @@
 import { useState } from "react";
-import FarewellScreen from "./FarewellScreen";
-import RatingScreen from "./RatingScreen";
-import ReturnScreen from "./ReturnScreen";
-import ValuesScreen from "./ValuesScreen";
-import WelcomeScreen from "./WelcomeScreen";
+import FarewellScreen from "./FarewellScreenEditor";
+import RatingScreen from "./RatingScreenEditor";
+import ReturnScreen from "./ReturnScreenEditor";
+import ValuesScreen from "./ValuesScreenEditor";
+import WelcomeScreen from "./WelcomeScreenEditor";
 
 const SurveyEditorContainer = ({
   survey,
