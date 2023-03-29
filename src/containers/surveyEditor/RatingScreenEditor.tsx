@@ -7,16 +7,16 @@ const RatingScreen = ({
   setRating,
   review,
   setReview,
-  handleReviewChange
+  handleReviewChange,
 }: {
   [x: string]: any;
 }) => {
   const stars = [1, 2, 3, 4, 5];
   const [duplicateReview, setDuplicateReview] = useState<string>("");
-  
-    const handleReview = (event: any) => {
-      setDuplicateReview(event.target.value);
-    };
+
+  const handleReview = (event: any) => {
+    setDuplicateReview(event.target.value);
+  };
 
   const handleRating = (star: number) => {
     setRating(star);
