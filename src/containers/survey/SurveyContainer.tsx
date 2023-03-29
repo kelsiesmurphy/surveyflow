@@ -5,30 +5,19 @@ import ReturnScreen from "./ReturnScreen";
 import ValuesScreen from "./ValuesScreen";
 import WelcomeScreen from "./WelcomeScreen";
 
-const SurveyContainer = ({ survey, selectedQuestion }: any) => {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  const [rating, setRating] = useState<number>(3);
-  const [review, setReview] = useState<string>("");
-  const [returnBack, setReturnBack] = useState<boolean>(true);
-
-  const addValue = (value: string) => {
-    const duplicateValues = [...selectedValues];
-    duplicateValues.push(value);
-    setSelectedValues(duplicateValues);
-  };
-
-  const removeValue = (value: string) => {
-    const duplicateValues = [...selectedValues];
-    const index = duplicateValues.indexOf(value);
-    duplicateValues.splice(index, 1);
-    setSelectedValues(duplicateValues);
-  };
-
-  const handleReviewChange = (e: any) => {
-    e.preventDefault();
-    setReview(e.target.value);
-  };
-
+const SurveyContainer = ({
+  survey,
+  selectedQuestion,
+  selectedValues,
+  rating,
+  review,
+  returnBack,
+  addValue,
+  removeValue,
+  setReview,
+  setRating,
+  setReturnBack,
+}: any) => {
   const ENUM_STATES: any = {
     Welcome: (
       <WelcomeScreen selectedQuestion={selectedQuestion} survey={survey} />
@@ -50,7 +39,6 @@ const SurveyContainer = ({ survey, selectedQuestion }: any) => {
         rating={rating}
         setReview={setReview}
         setRating={setRating}
-        handleReviewChange={handleReviewChange}
       />
     ),
     Return: (
@@ -72,7 +60,7 @@ const SurveyContainer = ({ survey, selectedQuestion }: any) => {
 
   return (
     <div className="max-w-2xl flex-1 p-4">
-      <EnumState state={selectedQuestion.question_type_title}></EnumState>
+      {EnumState({state: selectedQuestion.question_type_title})}
     </div>
   );
 };

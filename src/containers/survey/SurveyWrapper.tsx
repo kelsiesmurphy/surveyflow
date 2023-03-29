@@ -1,18 +1,33 @@
-import { ChevronLeft, ChevronRight } from "react-feather";
-import { useParams } from "react-router-dom";
-import SurveyContainer from "./SurveyContainer";
-import { supabase } from "../../supabaseClient";
 import { useState, useEffect } from "react";
-import { render } from "react-dom";
+import { useParams } from "react-router-dom";
+import { supabase } from "../../supabaseClient";
+import { ChevronLeft, ChevronRight } from "react-feather";
+import SurveyContainer from "./SurveyContainer";
 
-const CreateMain = () => {
+const SurveyWrapper = () => {
   const { id } = useParams();
-
-  const [survey, setSurvey] = useState({});
+  const [survey, setSurvey] = useState<any>({});
   const [questions, setQuestions] = useState<any>([]);
   const [selectedQuestion, setSelectedQuestion] = useState<{
     [x: string]: any;
   }>({});
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [rating, setRating] = useState<number>(3);
+  const [review, setReview] = useState<string>("");
+  const [returnBack, setReturnBack] = useState<boolean>(true);
+
+  const addValue = (value: string) => {
+    const duplicateValues = [...selectedValues];
+    duplicateValues.push(value);
+    setSelectedValues(duplicateValues);
+  };
+
+  const removeValue = (value: string) => {
+    const duplicateValues = [...selectedValues];
+    const index = duplicateValues.indexOf(value);
+    duplicateValues.splice(index, 1);
+    setSelectedValues(duplicateValues);
+  };
 
   useEffect(() => {
     if (questions[0]) {
@@ -22,7 +37,7 @@ const CreateMain = () => {
 
   const getQuestions = async (surveyId: any) => {
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("survey_question")
         .select()
         .eq("survey_id", surveyId)
@@ -35,10 +50,7 @@ const CreateMain = () => {
 
   const getSurvey = async (id: any) => {
     try {
-      const { data, error } = await supabase
-        .from("survey")
-        .select()
-        .eq("id", id);
+      const { data } = await supabase.from("survey").select().eq("id", id);
       if (data) {
         setSurvey(data[0]);
         getQuestions(data[0].id);
@@ -49,8 +61,6 @@ const CreateMain = () => {
   };
 
   useEffect(() => {
-    console.log("testtung");
-
     if (id) {
       getSurvey(id);
     }
@@ -65,10 +75,24 @@ const CreateMain = () => {
 
   const handleNext = () => {
     if (selectedQuestion.sort_order == questions.length) {
-      setSelectedQuestion(questions[0]);
+      handleSubmit();
     } else if (questions[selectedQuestion.sort_order]) {
       setSelectedQuestion(questions[selectedQuestion.sort_order]);
     }
+  };
+
+  const handleSubmit = async () => {
+    await supabase.from("survey_answer").insert([
+      {
+        survey_id: survey.id,
+        company_id: survey.company_id,
+        buy_again: returnBack,
+        rating: rating,
+        review: review,
+        values: selectedValues,
+      },
+    ]);
+    window.location.href = "/complete";
   };
 
   return (
@@ -84,6 +108,15 @@ const CreateMain = () => {
           <SurveyContainer
             survey={survey}
             selectedQuestion={selectedQuestion}
+            selectedValues={selectedValues}
+            rating={rating}
+            review={review}
+            returnBack={returnBack}
+            addValue={addValue}
+            removeValue={removeValue}
+            setReview={setReview}
+            setRating={setRating}
+            setReturnBack={setReturnBack}
           />
         </div>
         <div className="flex gap-4 p-4 md:p-12">
@@ -112,4 +145,4 @@ const CreateMain = () => {
   );
 };
 
-export default CreateMain;
+export default SurveyWrapper;

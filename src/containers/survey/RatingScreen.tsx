@@ -4,22 +4,20 @@ const RatingScreen = ({
   selectedQuestion,
   survey,
   rating,
-  setRating,
   review,
+  setRating,
   setReview,
-  handleReviewChange,
 }: {
   [x: string]: any;
 }) => {
   const stars = [1, 2, 3, 4, 5];
-  const [duplicateReview, setDuplicateReview] = useState<string>("");
-
-  const handleReview = (event: any) => {
-    setDuplicateReview(event.target.value);
-  };
 
   const handleRating = (star: number) => {
     setRating(star);
+  };
+
+  const handleReview = (e: any) => {
+    setReview(e.target.value);
   };
 
   const starsNode = stars.map((star, index) => {
@@ -27,7 +25,7 @@ const RatingScreen = ({
       <button key={index} onClick={() => handleRating(star)}>
         <svg
           aria-hidden="true"
-          className={`h-12 w-12 md:h-16 md:w-16 transition-colors hover:text-yellow-300 ${
+          className={`h-12 w-12 transition-colors hover:text-yellow-300 md:h-16 md:w-16 ${
             star <= rating ? "text-yellow-400" : "text-slate-100"
           }`}
           fill="currentColor"
@@ -51,7 +49,8 @@ const RatingScreen = ({
       </div>
       <div className="flex justify-center">{starsNode}</div>
       <textarea
-        value={duplicateReview}
+        name="review"
+        value={review}
         onChange={handleReview}
         className="flex-1 resize-none rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
         placeholder="Type here..."

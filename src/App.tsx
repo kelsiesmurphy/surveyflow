@@ -1,14 +1,13 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { supabase } from "./supabaseClient";
 import DashboardContainer from "./containers/dashboard/DashboardContainer";
 import EditorContainer from "./containers/editor/EditorContainer";
 import IndexContainer from "./containers/index/IndexContainer";
+import SurveyWrapper from "./containers/survey/SurveyWrapper";
 import Signup from "./containers/auth/Signup";
 import Login from "./containers/auth/Login";
-import { useEffect, useState } from "react";
-import { supabase } from "./supabaseClient";
-import { useNavigate } from "react-router-dom";
-import SurveyContainer from "./containers/survey/SurveyContainer";
-import CreateMain from "./containers/survey/SurveyWrapper";
+import SurveyCompletionScreen from "./containers/survey/SurveyCompletionScreen";
 
 function App() {
   const navigate = useNavigate();
@@ -53,7 +52,11 @@ function App() {
         />
         <Route
           path="/survey/:id/*"
-          element={<CreateMain />}
+          element={<SurveyWrapper />}
+        />
+        <Route
+          path="/complete"
+          element={<SurveyCompletionScreen />}
         />
       </Routes>
     </>

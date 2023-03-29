@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 const ValuesScreen = ({
   selectedQuestion,
   survey,
@@ -21,7 +19,7 @@ const ValuesScreen = ({
     return (
       <li
         key={index}
-        className={`rounded-full py-1 md:py-2 md:text-lg px-4 font-medium ${
+        className={`rounded-full py-1 px-4 font-medium md:py-2 md:text-lg ${
           selectedValues.includes(value)
             ? "bg-sky-700 text-sky-100"
             : "bg-sky-100 text-sky-700"
