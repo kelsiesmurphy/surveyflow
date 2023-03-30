@@ -18,20 +18,46 @@ const WelcomeScreen = ({
       .eq("id", selectedQuestion.id);
   };
 
+  const updateStarterImg = async (path:any) => {
+    await supabase
+      .from("survey")
+      .update({ starter_img: "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-user-storage/" + path })
+      .eq("id", survey.id);
+  };
+
+  const handleUpload = async (e: any) => {
+    let file;
+    if (e.target.files) {
+      file = e.target.files[0];
+    }
+    const { data, error } = await supabase
+      .storage
+      .from("surveyflow-user-storage")
+      .upload(file?.name, file as File);
+    if (data) {
+      console.log(data);
+      updateStarterImg(data.path)
+    } else if (error) {
+      console.log(error);
+      alert("There was an error adding this image. Please try a different image.")
+    }
+  };
+
   return (
     <div className="flex h-full flex-col items-center justify-around gap-4">
       <img src={survey.company_logo_img} className="h-16 w-16 rounded-lg" />
       <div className="flex w-full items-center justify-center">
         <label
           htmlFor="dropzone-file"
-          className={`flex aspect-[4/3] flex-1 cursor-pointer flex-col items-center justify-center rounded-lg transition-colors ${
+          className={`flex aspect-[4/3] flex-1 cursor-pointer flex-col items-center overflow-hidden justify-center rounded-lg transition-colors ${
             deviceSize === "desktop" ? "max-w-sm" : ""
           } ${
             survey.starter_img
-              ? `bg-[url('${survey.starter_img}')] border-sky-600 bg-cover hover:border-2`
+              ? `border-sky-600 bg-cover hover:border-2`
               : "bg-gray-50 hover:bg-slate-100"
           }`}
         >
+          <img className="aspect-[4/3] object-cover" src={survey.starter_img}/>
           <div
             className={`flex-col items-center justify-center pt-5 pb-6 ${
               survey.starter_img ? "hidden" : "flex"
@@ -47,7 +73,15 @@ const WelcomeScreen = ({
             </p>
           </div>
 
-          <input id="dropzone-file" type="file" className="hidden" />
+          <input
+            id="dropzone-file"
+            type="file"
+            className="hidden"
+            accept="image/*"
+            onChange={(e) => {
+              handleUpload(e);
+            }}
+          />
         </label>
       </div>
       <textarea

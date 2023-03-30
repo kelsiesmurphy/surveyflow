@@ -26,9 +26,9 @@ const SurveyWrapperEditor = ({
   return (
     <div className="flex flex-1 items-center justify-center">
       <div
-        className={`flex flex-col rounded-2xl border border-slate-300 bg-white shadow-md ${
+        className={`flex flex-col rounded-2xl border border-slate-300 overflow-y-auto bg-white shadow-md ${
           deviceSize === "desktop"
-            ? " aspect-video w-[90%]"
+            ? "w-[90%] h-[90%]"
             : "aspect-[9/16] w-[25%] min-w-[288px]"
         } overflow-hidden transition-all`}
       >

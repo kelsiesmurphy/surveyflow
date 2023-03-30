@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import EditorNavigation from "../editor/EditorNavigation";
 import CreateScreen from "./CreateScreen";
-import ShareScreen from "./ShareScreen";
 import ResultsScreen from "./ResultsScreen";
+// import ShareScreen from "./ShareScreen";
 
 const EditorContainer = ({ navigate }:{ [x: string]: any }) => {
   const { id } = useParams();
