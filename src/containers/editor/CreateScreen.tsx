@@ -2,11 +2,19 @@ import { Monitor, Smartphone } from "react-feather";
 import { useEffect, useState } from "react";
 import SurveyWrapperEditor from "./SurveyWrapperEditor";
 
-const CreateScreen = ({ questions, survey }:{ [x: string]: any }) => {
+const CreateScreen = ({
+  questions,
+  survey,
+  getSurvey,
+}: {
+  [x: string]: any;
+}) => {
   const [deviceSize, setDeviceSize] = useState("mobile");
-  const [selectedQuestion, setSelectedQuestion] = useState<{ [x: string]: any }>({});
+  const [selectedQuestion, setSelectedQuestion] = useState<{
+    [x: string]: any;
+  }>({});
 
-  useEffect(() => {    
+  useEffect(() => {
     if (questions[0]) {
       setSelectedQuestion(questions[0]);
     }
@@ -84,6 +92,7 @@ const CreateScreen = ({ questions, survey }:{ [x: string]: any }) => {
         selectedQuestion={selectedQuestion}
         deviceSize={deviceSize}
         questions={questions}
+        getSurvey={getSurvey}
         setSelectedQuestion={setSelectedQuestion}
       />
     </div>

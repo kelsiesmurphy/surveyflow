@@ -9,6 +9,7 @@ const SurveyEditorContainer = ({
   survey,
   selectedQuestion,
   deviceSize,
+  getSurvey,
 }: {
   [x: string]: any;
 }) => {
@@ -41,6 +42,7 @@ const SurveyEditorContainer = ({
         selectedQuestion={selectedQuestion}
         survey={survey}
         deviceSize={deviceSize}
+        getSurvey={getSurvey}
       />
     ),
     Values: (
@@ -67,6 +69,7 @@ const SurveyEditorContainer = ({
         deviceSize={deviceSize}
         returnBack={returnBack}
         setReturnBack={setReturnBack}
+        getSurvey={getSurvey}
       />
     ),
     Farewell: (

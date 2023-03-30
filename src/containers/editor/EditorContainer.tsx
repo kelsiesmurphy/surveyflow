@@ -7,7 +7,7 @@ import CreateScreen from "./CreateScreen";
 import ResultsScreen from "./ResultsScreen";
 // import ShareScreen from "./ShareScreen";
 
-const EditorContainer = ({ navigate }:{ [x: string]: any }) => {
+const EditorContainer = ({ navigate }: { [x: string]: any }) => {
   const { id } = useParams();
   const [survey, setSurvey] = useState({});
   const [questions, setQuestions] = useState<{ [x: string]: any }[] | null>([]);
@@ -53,7 +53,13 @@ const EditorContainer = ({ navigate }:{ [x: string]: any }) => {
         <Routes>
           <Route
             path="create"
-            element={<CreateScreen questions={questions} survey={survey} />}
+            element={
+              <CreateScreen
+                questions={questions}
+                survey={survey}
+                getSurvey={getSurvey}
+              />
+            }
           />
           {/* <Route path="share" element={<ShareScreen survey={survey} />} /> */}
           <Route path="results" element={<ResultsScreen survey={survey} />} />

@@ -6,6 +6,7 @@ const SurveyWrapperEditor = ({
   selectedQuestion,
   deviceSize,
   questions,
+  getSurvey,
   setSelectedQuestion,
 }: {
   [x: string]: any;
@@ -45,6 +46,7 @@ const SurveyWrapperEditor = ({
             survey={survey}
             selectedQuestion={selectedQuestion}
             deviceSize={deviceSize}
+            getSurvey={getSurvey}
           />
         </div>
         <div className="flex gap-4 p-4">

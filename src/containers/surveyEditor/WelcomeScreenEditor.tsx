@@ -6,6 +6,7 @@ const WelcomeScreen = ({
   selectedQuestion,
   survey,
   deviceSize,
+  getSurvey,
 }: {
   [x: string]: any;
 }) => {
@@ -27,6 +28,7 @@ const WelcomeScreen = ({
           path,
       })
       .eq("id", survey.id);
+    getSurvey(survey.id);
   };
 
   const handleUpload = async (e: any) => {

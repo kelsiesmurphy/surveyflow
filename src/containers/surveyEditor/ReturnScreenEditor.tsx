@@ -8,6 +8,7 @@ const ReturnScreen = ({
   deviceSize,
   returnBack,
   setReturnBack,
+  getSurvey,
 }: {
   [x: string]: any;
 }) => {
@@ -29,6 +30,7 @@ const ReturnScreen = ({
           path,
       })
       .eq("id", survey.id);
+    getSurvey(survey.id);
   };
 
   const handleUpload = async (e: any) => {
