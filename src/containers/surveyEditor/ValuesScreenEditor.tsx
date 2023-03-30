@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { supabase } from "../../supabaseClient";
 
 const ValuesScreen = ({
   selectedQuestion,
@@ -10,6 +11,13 @@ const ValuesScreen = ({
   [x: string]: any;
 }) => {
   const [title, setTitle] = useState(selectedQuestion.title);
+
+  const updateTitle = async () => {
+    await supabase
+      .from("survey_question")
+      .update({ title: title })
+      .eq("id", selectedQuestion.id);
+  };
 
   const handleValueChange = (value: string) => {
     if (selectedValues.includes(value)) {
@@ -40,6 +48,7 @@ const ValuesScreen = ({
         <textarea
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          onBlur={updateTitle}
           rows={3}
           className="resize-none rounded-lg border-sky-600 text-lg font-semibold text-slate-900 hover:border-2 focus:outline-sky-600"
         ></textarea>

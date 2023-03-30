@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Upload } from "react-feather";
+import { supabase } from "../../supabaseClient";
 
 const ReturnScreen = ({
   selectedQuestion,
@@ -11,6 +12,13 @@ const ReturnScreen = ({
   [x: string]: any;
 }) => {
   const [title, setTitle] = useState(selectedQuestion.title);
+
+  const updateTitle = async () => {
+    await supabase
+      .from("survey_question")
+      .update({ title: title })
+      .eq("id", selectedQuestion.id);
+  };
 
   return (
     <div className="flex h-full flex-col justify-around gap-4">
@@ -38,6 +46,7 @@ const ReturnScreen = ({
       <textarea
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          onBlur={updateTitle}
           rows={2}
           className="resize-none rounded-lg border-sky-600 text-center text-lg font-semibold text-slate-900 hover:border-2 focus:outline-sky-600"
         ></textarea>

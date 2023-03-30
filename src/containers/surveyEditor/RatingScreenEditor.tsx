@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { supabase } from "../../supabaseClient";
 
 const RatingScreen = ({
   selectedQuestion,
@@ -11,6 +12,13 @@ const RatingScreen = ({
   const stars = [1, 2, 3, 4, 5];
   const [duplicateReview, setDuplicateReview] = useState<string>("");
   const [title, setTitle] = useState(selectedQuestion.title);
+
+  const updateTitle = async () => {
+    await supabase
+      .from("survey_question")
+      .update({ title: title })
+      .eq("id", selectedQuestion.id);
+  };
 
   const handleReview = (event: any) => {
     setDuplicateReview(event.target.value);
@@ -44,6 +52,7 @@ const RatingScreen = ({
       <div className="flex justify-between gap-4">
         <textarea
           value={title}
+          onBlur={updateTitle}
           onChange={(e) => setTitle(e.target.value)}
           rows={3}
           className="resize-none rounded-lg border-sky-600 text-lg font-semibold text-slate-900 hover:border-2 focus:outline-sky-600"

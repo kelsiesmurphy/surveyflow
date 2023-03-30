@@ -49,7 +49,7 @@ const EditorContainer = ({ navigate }:{ [x: string]: any }) => {
   return (
     <div className="flex h-screen flex-col">
       <EditorNavigation navigate={navigate} />
-      <div className="flex h-[calc(100%_-_5rem)] flex-1 bg-[#F9FAFB]">
+      <div className="flex h-[calc(100%_-_86px)] flex-1 bg-[#F9FAFB]">
         <Routes>
           <Route
             path="create"
