@@ -43,7 +43,9 @@ const ReturnScreen = ({
       updateReturnImg(data.path);
     } else if (error) {
       console.log(error);
-      alert("There was an error adding this image. Please try a different image.")
+      alert(
+        "There was an error adding this image. Please try a different image."
+      );
     }
   };
 
@@ -53,7 +55,7 @@ const ReturnScreen = ({
         <div className="flex w-full items-center justify-center">
           <label
             htmlFor="dropzone-file"
-            className={`flex aspect-[4/3] overflow-hidden flex-1 cursor-pointer flex-col items-center justify-center rounded-lg transition-colors ${
+            className={`flex aspect-[4/3] flex-1 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-lg transition-colors ${
               deviceSize === "desktop" ? "max-w-sm" : ""
             } ${
               survey.buy_again_img
@@ -61,7 +63,10 @@ const ReturnScreen = ({
                 : "bg-gray-50 hover:bg-slate-100"
             }`}
           >
-            <img className="aspect-[4/3] object-cover" src={survey.buy_again_img}/>
+            <img
+              className="aspect-[4/3] object-cover"
+              src={survey.buy_again_img}
+            />
             <div
               className={`flex-col items-center justify-center pt-5 pb-6 ${
                 survey.buy_again_img ? "hidden" : "flex"

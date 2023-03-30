@@ -18,10 +18,14 @@ const WelcomeScreen = ({
       .eq("id", selectedQuestion.id);
   };
 
-  const updateStarterImg = async (path:any) => {
+  const updateStarterImg = async (path: any) => {
     await supabase
       .from("survey")
-      .update({ starter_img: "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-user-storage/" + path })
+      .update({
+        starter_img:
+          "https://xfjgoeigkozgqhjronue.supabase.co/storage/v1/object/public/surveyflow-user-storage/" +
+          path,
+      })
       .eq("id", survey.id);
   };
 
@@ -30,16 +34,17 @@ const WelcomeScreen = ({
     if (e.target.files) {
       file = e.target.files[0];
     }
-    const { data, error } = await supabase
-      .storage
+    const { data, error } = await supabase.storage
       .from("surveyflow-user-storage")
       .upload(file?.name, file as File);
     if (data) {
       console.log(data);
-      updateStarterImg(data.path)
+      updateStarterImg(data.path);
     } else if (error) {
       console.log(error);
-      alert("There was an error adding this image. Please try a different image.")
+      alert(
+        "There was an error adding this image. Please try a different image."
+      );
     }
   };
 
@@ -49,7 +54,7 @@ const WelcomeScreen = ({
       <div className="flex w-full items-center justify-center">
         <label
           htmlFor="dropzone-file"
-          className={`flex aspect-[4/3] flex-1 cursor-pointer flex-col items-center overflow-hidden justify-center rounded-lg transition-colors ${
+          className={`flex aspect-[4/3] flex-1 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-lg transition-colors ${
             deviceSize === "desktop" ? "max-w-sm" : ""
           } ${
             survey.starter_img
@@ -57,7 +62,7 @@ const WelcomeScreen = ({
               : "bg-gray-50 hover:bg-slate-100"
           }`}
         >
-          <img className="aspect-[4/3] object-cover" src={survey.starter_img}/>
+          <img className="aspect-[4/3] object-cover" src={survey.starter_img} />
           <div
             className={`flex-col items-center justify-center pt-5 pb-6 ${
               survey.starter_img ? "hidden" : "flex"

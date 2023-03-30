@@ -7,7 +7,9 @@ const SurveyWrapperEditor = ({
   deviceSize,
   questions,
   setSelectedQuestion,
-}: { [x: string]: any }) => {
+}: {
+  [x: string]: any;
+}) => {
   const progressPercentage =
     ((selectedQuestion.sort_order - 1) / questions.length) * 100;
 
@@ -26,9 +28,9 @@ const SurveyWrapperEditor = ({
   return (
     <div className="flex flex-1 items-center justify-center">
       <div
-        className={`flex flex-col rounded-2xl border border-slate-300 overflow-y-auto bg-white shadow-md ${
+        className={`flex flex-col overflow-y-auto rounded-2xl border border-slate-300 bg-white shadow-md ${
           deviceSize === "desktop"
-            ? "w-[90%] h-[90%]"
+            ? "h-[90%] w-[90%]"
             : "aspect-[9/16] w-[25%] min-w-[288px]"
         } overflow-hidden transition-all`}
       >
@@ -39,7 +41,11 @@ const SurveyWrapperEditor = ({
           ></div>
         </div>
         <div className="flex flex-1 justify-center">
-          <SurveyEditorContainer survey={survey} selectedQuestion={selectedQuestion} deviceSize={deviceSize} />
+          <SurveyEditorContainer
+            survey={survey}
+            selectedQuestion={selectedQuestion}
+            deviceSize={deviceSize}
+          />
         </div>
         <div className="flex gap-4 p-4">
           {selectedQuestion.sort_order !== 1 && (
