@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "react-feather";
 import SurveyEditorContainer from "../surveyEditor/SurveyEditorContainer";
 
-const CreateMain = ({
+const SurveyWrapperEditor = ({
   survey,
   selectedQuestion,
   deviceSize,
@@ -63,4 +63,4 @@ const CreateMain = ({
   );
 };
 
-export default CreateMain;
+export default SurveyWrapperEditor;

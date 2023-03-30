@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 
 const ValuesScreen = ({
   selectedQuestion,
@@ -9,6 +9,8 @@ const ValuesScreen = ({
 }: {
   [x: string]: any;
 }) => {
+  const [title, setTitle] = useState(selectedQuestion.title);
+
   const handleValueChange = (value: string) => {
     if (selectedValues.includes(value)) {
       removeValue(value);
@@ -27,9 +29,7 @@ const ValuesScreen = ({
             : "bg-sky-100 text-sky-700"
         } transition-colors duration-300`}
       >
-        <button onClick={() => handleValueChange(value)}>
-          {value}
-        </button>
+        <button onClick={() => handleValueChange(value)}>{value}</button>
       </li>
     );
   });
@@ -37,9 +37,12 @@ const ValuesScreen = ({
   return (
     <div className="flex h-full flex-col gap-4">
       <div className="flex justify-between gap-4">
-        <h1 className="text-lg font-semibold text-slate-900">
-          {selectedQuestion.title}
-        </h1>
+        <textarea
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          rows={3}
+          className="resize-none rounded-lg border-sky-600 text-lg font-semibold text-slate-900 hover:border-2 focus:outline-sky-600"
+        ></textarea>
         <img src={survey.company_logo_img} className="h-16 w-16 rounded-lg" />
       </div>
       <ul className="flex flex-wrap gap-3">{valueNodes}</ul>

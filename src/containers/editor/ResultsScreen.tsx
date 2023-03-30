@@ -52,7 +52,7 @@ const ResultsScreen = ({ survey }: any) => {
       return (
         <li
           key={index}
-          className="rounded-full text-center bg-sky-100 text-sky-700 py-1 px-4 font-medium"
+          className="rounded-full text-center bg-sky-100 text-sky-700 py-1 px-4 text-sm font-medium"
         >
           {value}
         </li>

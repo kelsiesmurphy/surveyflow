@@ -5,14 +5,12 @@ const RatingScreen = ({
   survey,
   rating,
   setRating,
-  review,
-  setReview,
-  handleReviewChange,
 }: {
   [x: string]: any;
 }) => {
   const stars = [1, 2, 3, 4, 5];
   const [duplicateReview, setDuplicateReview] = useState<string>("");
+  const [title, setTitle] = useState(selectedQuestion.title);
 
   const handleReview = (event: any) => {
     setDuplicateReview(event.target.value);
@@ -44,9 +42,12 @@ const RatingScreen = ({
   return (
     <div className="flex h-full flex-col gap-4">
       <div className="flex justify-between gap-4">
-        <h1 className="text-lg font-semibold text-slate-900">
-          {selectedQuestion.title}
-        </h1>
+        <textarea
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          rows={3}
+          className="resize-none rounded-lg border-sky-600 text-lg font-semibold text-slate-900 hover:border-2 focus:outline-sky-600"
+        ></textarea>
         <img src={survey.company_logo_img} className="h-16 w-16 rounded-lg" />
       </div>
       <div className="flex justify-center">{starsNode}</div>

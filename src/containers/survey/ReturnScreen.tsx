@@ -11,7 +11,7 @@ const ReturnScreen = ({
     <div className="flex h-full flex-col justify-around gap-4">
       <div className="flex justify-center">
         <img
-          src={survey.starter_img}
+          src={survey.buy_again_img}
           className="rounded-lg object-cover w-full md:w-[70%]"
         />
       </div>

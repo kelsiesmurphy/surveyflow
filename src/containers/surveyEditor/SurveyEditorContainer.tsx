@@ -30,14 +30,18 @@ const SurveyEditorContainer = ({
     setSelectedValues(duplicateValues);
   };
 
-  const handleReviewChange = (e:any) => {
-    e.preventDefault()
-    setReview(e.target.value)
-  }
+  const handleReviewChange = (e: any) => {
+    e.preventDefault();
+    setReview(e.target.value);
+  };
 
   const ENUM_STATES: any = {
     Welcome: (
-      <WelcomeScreen selectedQuestion={selectedQuestion} survey={survey} />
+      <WelcomeScreen
+        selectedQuestion={selectedQuestion}
+        survey={survey}
+        deviceSize={deviceSize}
+      />
     ),
     Values: (
       <ValuesScreen
@@ -52,11 +56,8 @@ const SurveyEditorContainer = ({
       <RatingScreen
         selectedQuestion={selectedQuestion}
         survey={survey}
-        review={review}
         rating={rating}
-        setReview={setReview}
         setRating={setRating}
-        handleReviewChange={handleReviewChange}
       />
     ),
     Return: (
