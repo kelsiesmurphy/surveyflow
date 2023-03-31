@@ -7,6 +7,7 @@ const WelcomeScreen = ({
   survey,
   deviceSize,
   getSurvey,
+  setShowSettings
 }: {
   [x: string]: any;
 }) => {

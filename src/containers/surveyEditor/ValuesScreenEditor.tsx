@@ -7,6 +7,7 @@ const ValuesScreen = ({
   selectedValues,
   addValue,
   removeValue,
+  setShowSettings
 }: {
   [x: string]: any;
 }) => {

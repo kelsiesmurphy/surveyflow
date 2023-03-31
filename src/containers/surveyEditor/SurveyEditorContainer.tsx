@@ -10,12 +10,12 @@ const SurveyEditorContainer = ({
   selectedQuestion,
   deviceSize,
   getSurvey,
+  setShowSettings,
 }: {
   [x: string]: any;
 }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [rating, setRating] = useState<number>(3);
-  const [review, setReview] = useState<string>("");
   const [returnBack, setReturnBack] = useState<boolean>(true);
 
   const addValue = (value: string) => {
@@ -31,11 +31,6 @@ const SurveyEditorContainer = ({
     setSelectedValues(duplicateValues);
   };
 
-  const handleReviewChange = (e: any) => {
-    e.preventDefault();
-    setReview(e.target.value);
-  };
-
   const ENUM_STATES: any = {
     Welcome: (
       <WelcomeScreen
@@ -43,6 +38,7 @@ const SurveyEditorContainer = ({
         survey={survey}
         deviceSize={deviceSize}
         getSurvey={getSurvey}
+        setShowSettings={setShowSettings}
       />
     ),
     Values: (
@@ -52,6 +48,7 @@ const SurveyEditorContainer = ({
         addValue={addValue}
         removeValue={removeValue}
         selectedValues={selectedValues}
+        setShowSettings={setShowSettings}
       />
     ),
     Rating: (
@@ -60,6 +57,7 @@ const SurveyEditorContainer = ({
         survey={survey}
         rating={rating}
         setRating={setRating}
+        setShowSettings={setShowSettings}
       />
     ),
     Return: (
@@ -73,7 +71,11 @@ const SurveyEditorContainer = ({
       />
     ),
     Farewell: (
-      <FarewellScreen selectedQuestion={selectedQuestion} survey={survey} />
+      <FarewellScreen
+        selectedQuestion={selectedQuestion}
+        survey={survey}
+        setShowSettings={setShowSettings}
+      />
     ),
   };
 

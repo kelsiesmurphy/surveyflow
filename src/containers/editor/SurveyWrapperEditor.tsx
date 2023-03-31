@@ -8,6 +8,7 @@ const SurveyWrapperEditor = ({
   questions,
   getSurvey,
   setSelectedQuestion,
+  setShowSettings
 }: {
   [x: string]: any;
 }) => {
@@ -27,7 +28,7 @@ const SurveyWrapperEditor = ({
   };
 
   return (
-    <div className="flex flex-1 items-center justify-center">
+    <div onClick={() => setShowSettings(false)} className="flex flex-1 items-center justify-center">
       <div
         className={`flex flex-col overflow-y-auto rounded-2xl border border-slate-300 bg-white shadow-md ${
           deviceSize === "desktop"
@@ -47,6 +48,7 @@ const SurveyWrapperEditor = ({
             selectedQuestion={selectedQuestion}
             deviceSize={deviceSize}
             getSurvey={getSurvey}
+            setShowSettings={setShowSettings}
           />
         </div>
         <div className="flex gap-4 p-4">

@@ -6,6 +6,7 @@ const RatingScreen = ({
   survey,
   rating,
   setRating,
+  setShowSettings,
 }: {
   [x: string]: any;
 }) => {
