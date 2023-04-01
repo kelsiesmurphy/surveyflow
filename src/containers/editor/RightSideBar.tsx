@@ -22,7 +22,7 @@ const RightSideBar = ({
     getSurvey(survey.id);
   };
 
-  const handleUpload = async (e: any) => {
+  const handleLogoUpload = async (e: any) => {
     let file;
     if (e.target.files) {
       file = e.target.files[0];
@@ -83,6 +83,7 @@ const RightSideBar = ({
 
       return (
         <ValueField
+          key={index}
           value={value}
           index={index}
           handleValueChange={handleValueChange}
@@ -136,17 +137,13 @@ const RightSideBar = ({
                 src={survey.company_logo_img}
               />
               <div
-                className={`flex-col items-center justify-center pt-5 pb-6 ${
+                className={`flex-col items-center justify-center gap-1 pt-5 pb-6 ${
                   survey.company_logo_img ? "hidden" : "flex"
                 }`}
               >
-                <Upload className="mb-3 h-10 w-6 text-gray-400" />
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span className="font-semibold">Click to upload</span> or drag
-                  and drop
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG or JPG (MAX. 800x600px)
+                <Upload className="h-10 w-6 text-gray-400" />
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <span className="font-semibold">Upload</span>
                 </p>
               </div>
               <input
@@ -155,7 +152,7 @@ const RightSideBar = ({
                 className="hidden"
                 accept="image/*"
                 onChange={(e) => {
-                  handleUpload(e);
+                  handleLogoUpload(e);
                 }}
               />
             </label>

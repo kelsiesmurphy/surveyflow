@@ -7,7 +7,7 @@ const WelcomeScreen = ({
   survey,
   deviceSize,
   getSurvey,
-  setShowSettings
+  setShowSettings,
 }: {
   [x: string]: any;
 }) => {
@@ -80,7 +80,6 @@ const WelcomeScreen = ({
               SVG, PNG or JPG (MAX. 800x600px)
             </p>
           </div>
-
           <input
             id="dropzone-file"
             type="file"
