@@ -44,6 +44,8 @@ const CreateScreen = ({
         survey={survey}
         getSurvey={getSurvey}
         setShowSettings={setShowSettings}
+        questions={questions}
+        setSelectedQuestion={setSelectedQuestion}
         showSettings={showSettings}
       />
     </div>

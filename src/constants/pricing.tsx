@@ -4,27 +4,22 @@ export const pricing = [
     price: "Free",
     annualPrice: "Free",
     content:
-      "Perfect for trying Surveyflow. One survey, one user, completely free.",
+      "Perfect for trying Surveyflow. One survey, completely free.",
     name: "Basic plan",
     benefits: [
       "1 Surveyflow Survey",
-      "20 responses per month",
-      "1 team member",
-      "Basic colour options",
+      "Surveyflow branding",
     ],
   },
   {
     id: "pricing-2",
-    price: "£15/month",
-    annualPrice: "£144/year",
-    content: "Built for small teams. 5 team members, unlimited responses.",
+    price: "£6/month",
+    annualPrice: "£60/year",
+    content: "Built for small teams. Premium features, unlimited responses.",
     name: "Business plan",
     benefits: [
-      "10 Surveyflow surveys",
-      "Unlimited responses per month",
-      "5 team members",
-      "Custom colour options",
-      "Detailed analytics",
+      "3 Surveyflow surveys",
+      "Personalised branding options"
     ],
   },
 ];

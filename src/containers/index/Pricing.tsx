@@ -43,7 +43,7 @@ const Pricing = () => {
                   : "text-md h-11 flex-1 cursor-pointer rounded-md bg-transparent font-medium text-slate-500 transition-all"
               }
             >
-              Annual Billing <span>Save 20%</span>
+              Annual Billing <span className="text-sm bg-slate-100 rounded-full py-1 px-2">Save 20%</span>
             </button>
           </div>
         </div>
@@ -51,7 +51,7 @@ const Pricing = () => {
           {pricing.map((pricing) => (
             <div
               key={pricing.id}
-              className="flex min-h-[572px] min-w-[288px] max-w-sm flex-col justify-between rounded-2xl border border-slate-300 py-8 px-8 pt-12 shadow-sm"
+              className="flex min-h-[480px] min-w-[288px] max-w-sm flex-col justify-between rounded-2xl border border-slate-300 py-8 px-8 pt-12 shadow-sm"
             >
               <div className="space-y-4 text-center">
                 <h3 className="text-4xl font-medium text-slate-800">

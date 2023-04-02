@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, Upload, X } from "react-feather";
 import { supabase } from "../../supabaseClient";
 
@@ -7,8 +7,16 @@ const RightSideBar = ({
   getSurvey,
   showSettings,
   setShowSettings,
+  questions,
+  setSelectedQuestion
 }: any) => {
-  const [updatedValues, setUpdatedValues] = useState([]);
+  const [updatedValues, setUpdatedValues] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (survey.values) {
+      setUpdatedValues(survey.values);
+    }
+  }, [survey]);
 
   const updateLogo = async (path: any) => {
     await supabase
@@ -46,12 +54,25 @@ const RightSideBar = ({
       .from("survey")
       .update({ values: updatedValues })
       .eq("id", survey.id);
+    getSurvey(survey.id)
   };
 
-  const ValueField = ({ value, index, handleValueChange }: any) => {
-    const [newValue, setNewValue] = useState(value);
-    return (
-      <li key={index} className="flex flex-col gap-1">
+  let valueNodes;
+  if (updatedValues) {
+    valueNodes = updatedValues.map((value: any, index: number) => {
+      const handleValueChange = (e: any) => {
+        const changedValues = updatedValues.map((val:any, i:number) => {
+          if(i === index){
+            return val = e.target.value
+          } else {
+            return val
+          }
+        })
+        setUpdatedValues(changedValues)
+      };
+
+      return (
+        <li key={index} className="flex flex-col gap-1">
         <label
           className="text-sm font-medium text-slate-600"
           htmlFor={`${value}-input`}
@@ -68,26 +89,6 @@ const RightSideBar = ({
           className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 shadow-sm"
         />
       </li>
-    );
-  };
-
-  let valueNodes;
-  if (survey.values) {
-    valueNodes = survey.values.map((value: any, index: number) => {
-      const handleValueChange = (e: any) => {
-        const dupValues: any = [...survey.values];
-        dupValues[index] = e.target.value;
-        setUpdatedValues(dupValues);
-        console.log(updatedValues);
-      };
-
-      return (
-        <ValueField
-          key={index}
-          value={value}
-          index={index}
-          handleValueChange={handleValueChange}
-        />
       );
     });
   }
