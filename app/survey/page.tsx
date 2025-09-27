@@ -1,4 +1,4 @@
-// app/quiz/page.tsx
+// app/survey/page.tsx
 "use client";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -6,24 +6,24 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export default function QuizPage() {
-  const quizzes = useQuery(api.quizzes.getAllQuizzes, {});
+export default function SurveyPage() {
+  const surveys = useQuery(api.surveys.getAllSurveys, {});
 
-  if (!quizzes) return <div>Loading…</div>;
+  if (!surveys) return <div>Loading…</div>;
 
   return (
     <div className="flex flex-1 justify-center">
       <div className="w-full max-w-xl p-4 space-y-4">
-        <h1 className="text-2xl font-bold">Quizzes</h1>
-        {quizzes.map((quiz) => (
-          <Card key={quiz._id}>
+        <h1 className="text-2xl font-bold">Surveys</h1>
+        {surveys.map((survey) => (
+          <Card key={survey._id}>
             <CardHeader>
-              <CardTitle>{quiz.title}</CardTitle>
+              <CardTitle>{survey.title}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p>{quiz.description}</p>
+              <p>{survey.description}</p>
               <Button asChild>
-                <Link href={`/quiz/${quiz._id}`}>Go to Quiz</Link>
+                <Link href={`/survey/${survey._id}`}>Take Survey</Link>
               </Button>
             </CardContent>
           </Card>

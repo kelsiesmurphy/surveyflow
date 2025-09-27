@@ -1,145 +1,107 @@
 // convex/seed.ts
 import { mutation } from "./_generated/server";
 
-// Seed: World Capitals Quiz
-export const seedCapitalQuiz = mutation({
+export const seedNpsSurvey = mutation({
   args: {},
   handler: async ({ db }) => {
+    const createdBy = "system"; // could be a placeholder or admin user
+    const createdAt = Date.now();
+
+    // Insert survey first (will patch in question IDs later)
+    const surveyId = await db.insert("surveys", {
+      title: "Customer Feedback Survey",
+      description: "A sample NPS-style survey to get started.",
+      createdBy,
+      questionIds: [],
+      createdAt,
+      isActive: true,
+    });
+
     const questions = [
       {
-        text: "What is the capital of France?",
-        options: ["Paris", "Berlin", "Rome", "Madrid"],
-        correctIndex: 0,
-        category: "capitals",
-        type: "multiple_choice",
+        surveyId,
+        text: "Welcome to our survey!",
+        type: "welcome",
+        order: 1,
       },
       {
-        text: "What is the capital of Japan?",
-        options: ["Seoul", "Tokyo", "Kyoto", "Osaka"],
-        correctIndex: 1,
-        category: "capitals",
+        surveyId,
+        text: "How did you hear about us?",
         type: "multiple_choice",
+        order: 2,
+        options: [
+          { label: "Google", iconUrl: "/icons/google.png" },
+          { label: "YouTube", iconUrl: "/icons/youtube.png" },
+          { label: "Social Media", iconUrl: "/icons/social.png" },
+          { label: "Other", hasOther: true },
+        ],
       },
       {
-        text: "What is the capital of Brazil?",
-        options: ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"],
-        correctIndex: 2,
-        category: "capitals",
-        type: "multiple_choice",
+        surveyId,
+        text: "Can you share more details? (e.g. which video or channel on YouTube?)",
+        type: "text",
+        order: 3,
       },
       {
-        text: "What is the capital of Canada?",
-        options: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
-        correctIndex: 2,
-        category: "capitals",
+        surveyId,
+        text: "What’s most appealing about our company?",
         type: "multiple_choice",
+        order: 4,
+        options: [
+          { label: "Our mission" },
+          { label: "Our values" },
+          { label: "Our products" },
+          { label: "Other", hasOther: true },
+        ],
       },
       {
-        text: "What is the capital of Australia?",
-        options: ["Sydney", "Melbourne", "Canberra", "Perth"],
-        correctIndex: 2,
-        category: "capitals",
+        surveyId,
+        text: "When did you first hear about us?",
         type: "multiple_choice",
+        order: 5,
+        options: [
+          { label: "Less than a month ago" },
+          { label: "1-6 months ago" },
+          { label: "6-12 months ago" },
+          { label: "Over a year ago" },
+        ],
+      },
+      {
+        surveyId,
+        text: "Who is this purchase for?",
+        type: "multiple_choice",
+        order: 6,
+        options: [
+          { label: "Myself" },
+          { label: "A friend or family member" },
+          { label: "My team or company" },
+          { label: "Other", hasOther: true },
+        ],
+      },
+      {
+        surveyId,
+        text: "How likely are you to recommend us to a friend?",
+        type: "rating",
+        order: 7,
+        metadata: { scale: 10 }, // NPS-style 0–10 scale
+      },
+      {
+        surveyId,
+        text: "Thank you for your time!",
+        type: "thank_you",
+        order: 8,
       },
     ];
 
-    const quizQuestionIds = [];
+    const questionIds = [];
     for (const q of questions) {
-      const id = await db.insert("quiz_questions", q);
-      quizQuestionIds.push(id);
+      const id = await db.insert("survey_questions", q);
+      questionIds.push(id);
     }
 
-    const quiz = await db.insert("quizzes", {
-      title: "World Capitals Quiz",
-      description: "Test your knowledge of world capitals!",
-      quizQuestionIds,
-    });
+    // Update survey with its question IDs
+    await db.patch(surveyId, { questionIds });
 
-    return { quiz, questions: quizQuestionIds.length };
-  },
-});
-
-// Seed: General Country Quiz
-export const seedGeneralCountryQuiz = mutation({
-  args: {},
-  handler: async ({ db }) => {
-    const questions = [
-      {
-        text: "Which country has the largest population in the world?",
-        options: ["India", "China", "United States", "Indonesia"],
-        correctIndex: 1,
-        category: "population",
-        type: "multiple_choice",
-      },
-      {
-        text: "Which is the largest country by land area?",
-        options: ["Canada", "China", "Russia", "United States"],
-        correctIndex: 2,
-        category: "land_area",
-        type: "multiple_choice",
-      },
-      {
-        text: "Which country is known as the Land of the Rising Sun?",
-        options: ["China", "South Korea", "Japan", "Thailand"],
-        correctIndex: 2,
-        category: "nickname",
-        type: "multiple_choice",
-      },
-      {
-        text: "Which continent is Egypt located in?",
-        options: ["Asia", "Europe", "Africa", "Middle East"],
-        correctIndex: 2,
-        category: "continent",
-        type: "multiple_choice",
-      },
-      {
-        text: "Which country has the most time zones?",
-        options: ["United States", "France", "Russia", "Australia"],
-        correctIndex: 1,
-        category: "timezones",
-        type: "multiple_choice",
-      },
-    ];
-
-    const quizQuestionIds = [];
-    for (const q of questions) {
-      const id = await db.insert("quiz_questions", q);
-      quizQuestionIds.push(id);
-    }
-
-    const quiz = await db.insert("quizzes", {
-      title: "General Country Quiz",
-      description: "How much do you know about countries around the world?",
-      quizQuestionIds,
-    });
-
-    return { quiz, questions: quizQuestionIds.length };
-  },
-});
-
-export const seedMapQuiz = mutation({
-  args: {},
-  handler: async ({ db }) => {
-    const q = await db.insert("quiz_questions", {
-      text: "Click on Namibia on the map of Africa",
-      options: [], // not needed for map questions
-      correctIndex: -1, // not applicable
-      category: "maps",
-      type: "map_click",
-    });
-
-    const quiz = await db.insert("quizzes", {
-      title: "African Countries Map Quiz",
-      description:
-        "Test your knowledge of African geography by clicking the right country!",
-      quizQuestionIds: [q],
-    });
-
-    // Patch metadata separately since schema requires `v.any()`
-    await db.patch(q, {
-      metadata: { mapId: "africa", correctRegion: "NAMIBIA" },
-    });
-
-    return quiz;
+    return { surveyId, questions: questionIds.length };
   },
 });

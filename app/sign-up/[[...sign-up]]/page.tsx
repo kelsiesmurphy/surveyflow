@@ -1,5 +1,12 @@
 import { SignUp } from "@clerk/nextjs";
-import { Users, BarChart2, LockOpen, Globe } from "lucide-react";
+import {
+  FileText,
+  Layers,
+  BarChart2,
+  Palette,
+  Download,
+  Headphones,
+} from "lucide-react";
 
 export default function SignUpPage() {
   return (
@@ -8,46 +15,67 @@ export default function SignUpPage() {
         <ul className="max-w-sm space-y-8">
           <li>
             <div className="flex items-center gap-2">
+              <FileText className="size-4" />
+              <p className="font-semibold">Create Surveys Easily</p>
+            </div>
+            <p className="text-muted-foreground mt-2 text-sm">
+              Get started for free by creating your first survey and collecting
+              unlimited responses.
+            </p>
+          </li>
+          <li>
+            <div className="flex items-center gap-2">
+              <Layers className="size-4" />
+              <p className="font-semibold">Unlimited Surveys (Pro)</p>
+            </div>
+            <p className="text-muted-foreground mt-2 text-sm">
+              Upgrade to Surveyflow Pro to create and manage as many surveys as
+              you need.
+            </p>
+          </li>
+          <li>
+            <div className="flex items-center gap-2">
+              <Palette className="size-4" />
+              <p className="font-semibold">Custom Branding (Pro)</p>
+            </div>
+            <p className="text-muted-foreground mt-2 text-sm">
+              Add your logo, colors, and themes to make your surveys look
+              professional and on-brand.
+            </p>
+          </li>
+          <li>
+            <div className="flex items-center gap-2">
               <BarChart2 className="size-4" />
-              <p className="font-semibold">Track Your Progress</p>
+              <p className="font-semibold">Analytics & Insights (Pro)</p>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
-              Save your quiz results, streaks, and achievements so you can see
-              how much you’ve improved over time.
+              View detailed response analytics and export results to CSV or
+              Excel for deeper insights.
             </p>
           </li>
           <li>
             <div className="flex items-center gap-2">
-              <Users className="size-4" />
-              <p className="font-semibold">Challenge Friends</p>
+              <Download className="size-4" />
+              <p className="font-semibold">Export Results (Pro)</p>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
-              Add friends, send quizzes, and compete on leaderboards to make
-              learning fun and social.
+              Download your survey data for reporting, presentations, and
+              offline analysis.
             </p>
           </li>
           <li>
             <div className="flex items-center gap-2">
-              <LockOpen className="size-4" />
-              <p className="font-semibold">Unlock Personalized Features</p>
+              <Headphones className="size-4" />
+              <p className="font-semibold">Priority Support (Pro)</p>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
-              Get access to tailored practice, targeted training, and
-              recommendations based on your strengths and weaknesses.
-            </p>
-          </li>
-          <li>
-            <div className="flex items-center gap-2">
-              <Globe className="size-4" />
-              <p className="font-semibold">Join the Community</p>
-            </div>
-            <p className="text-muted-foreground mt-2 text-sm">
-              Be part of a global network of explorers, earn badges, and
-              participate in special events and competitions.
+              Get faster response times and dedicated help whenever you need
+              assistance.
             </p>
           </li>
         </ul>
       </div>
+
       <div className="flex flex-1 items-center justify-center p-6 md:p-10 lg:justify-start">
         <SignUp />
       </div>
