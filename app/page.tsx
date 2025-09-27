@@ -1,16 +1,18 @@
-"use client";
+import { Metadata } from "next";
+import LandingPage from "../components/landing-page";
+import Footer from "../components/footer";
+import { brand } from "@/lib/constants/brand";
 
-import { Authenticated, Unauthenticated } from "convex/react";
+export const metadata: Metadata = {
+  title: `Home | ${brand.name}`,
+  description: brand.description,
+};
 
-export default function Home() {
+export default function LandingPageWrapper() {
   return (
-    <div className="flex items-center justify-center w-full">
-      <Authenticated>
-        <p>Landing Page: signed in</p>
-      </Authenticated>
-      <Unauthenticated>
-        <p>Landing Page: signed out</p>
-      </Unauthenticated>
+    <div className="flex items-center justify-center flex-col w-full">
+      <LandingPage />
+      <Footer />
     </div>
   );
 }
