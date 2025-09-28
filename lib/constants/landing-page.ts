@@ -1,9 +1,9 @@
 import {
   Clock,
+  Download,
   Monitor,
   PanelsLeftRight,
   Settings,
-  TreeDeciduous,
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -79,44 +79,26 @@ export const landingPageContent: LandingPageContent = {
     },
     heading: "Make every survey meaningful.",
     subheading:
-      "SurveyFlow turns post-purchase feedback into action. Delight your users with intuitive surveys and contribute to planting a tree with every completion.",
+      "SurveyFlow turns post-purchase feedback into action. Delight your users with intuitive surveys and gather insights efficiently.",
   },
   socialProof: {
     heading: "Trusted by businesses worldwide",
     logos: [
-      {
-        image: "/social_proof/Cubekit.svg",
-        altText: "Cubekit Logo",
-      },
-      {
-        image: "/social_proof/EasyTax.svg",
-        altText: "EasyTax Logo",
-      },
-      {
-        image: "/social_proof/Eclipseful.svg",
-        altText: "Eclipseful Logo",
-      },
-      {
-        image: "/social_proof/Eightball.svg",
-        altText: "Eightball Logo",
-      },
-      {
-        image: "/social_proof/Elasticware.svg",
-        altText: "Elasticware Logo",
-      },
-      {
-        image: "/social_proof/Ennlabs.svg",
-        altText: "Ennlabs Logo",
-      },
+      { image: "/social_proof/Cubekit.svg", altText: "Cubekit Logo" },
+      { image: "/social_proof/EasyTax.svg", altText: "EasyTax Logo" },
+      { image: "/social_proof/Eclipseful.svg", altText: "Eclipseful Logo" },
+      { image: "/social_proof/Eightball.svg", altText: "Eightball Logo" },
+      { image: "/social_proof/Elasticware.svg", altText: "Elasticware Logo" },
+      { image: "/social_proof/Ennlabs.svg", altText: "Ennlabs Logo" },
     ],
   },
   keyFeatures: {
     headings: {
       lineOne: "Engaging surveys.",
-      lineTwo: "Real-world impact.",
+      lineTwo: "Easy to use.",
     },
     subheading:
-      "SurveyFlow combines exceptional user experience with environmental stewardship. Gather valuable insights while making a difference.",
+      "SurveyFlow combines exceptional user experience with actionable insights. Gather valuable feedback and improve your business decisions.",
     features: [
       {
         icon: Settings,
@@ -127,7 +109,7 @@ export const landingPageContent: LandingPageContent = {
       {
         icon: PanelsLeftRight,
         heading: "Effortless integration",
-        body: "Seamlessly connect with your e-commerce platform for smooth data collection.",
+        body: "Seamlessly connect with your platform for smooth data collection.",
         image: null,
       },
       {
@@ -141,10 +123,10 @@ export const landingPageContent: LandingPageContent = {
   features: {
     headings: {
       lineOne: "Insights you need.",
-      lineTwo: "Impact you care about.",
+      lineTwo: "Decisions you can trust.",
     },
     subheading:
-      "SurveyFlow empowers businesses to grow their feedback strategies and contribute to a greener planet.",
+      "SurveyFlow empowers businesses to grow their feedback strategies and make data-driven decisions.",
     features: [
       {
         icon: Settings,
@@ -156,12 +138,6 @@ export const landingPageContent: LandingPageContent = {
         icon: PanelsLeftRight,
         heading: "Customizable survey themes",
         body: "Reflect your brand identity with tailored survey designs.",
-        image: null,
-      },
-      {
-        icon: TreeDeciduous,
-        heading: "Tree-planting program integration",
-        body: "Every survey completion contributes to planting a tree. Simple and impactful.",
         image: null,
       },
       {
@@ -182,6 +158,12 @@ export const landingPageContent: LandingPageContent = {
         body: "Engage customers post-survey with automated emails and personalized recommendations.",
         image: null,
       },
+      {
+        icon: Download,
+        heading: "Export & share results",
+        body: "Download your survey data in CSV or Excel, or share reports with your team for easy collaboration.",
+        image: null,
+      },
     ],
   },
   pricing: {
@@ -193,11 +175,6 @@ export const landingPageContent: LandingPageContent = {
     subheading:
       "Considering SurveyFlow? Explore our FAQ section for answers to common questions.",
     questions: [
-      {
-        question: "How does SurveyFlow contribute to tree planting?",
-        answer:
-          "For every survey completed on our platform, we partner with reforestation programs to plant a tree in regions that need it most. It's part of our mission to combine actionable insights with sustainable impact.",
-      },
       {
         question: "Is SurveyFlow suitable for my small business?",
         answer:
@@ -211,7 +188,7 @@ export const landingPageContent: LandingPageContent = {
       {
         question: "What platforms does SurveyFlow integrate with?",
         answer:
-          "SurveyFlow integrates with major e-commerce platforms like Shopify, WooCommerce, and Magento, as well as popular CRMs and analytics tools.",
+          "SurveyFlow integrates with major e-commerce platforms, popular CRMs, and analytics tools.",
       },
       {
         question: "How does the analytics dashboard work?",
@@ -221,7 +198,7 @@ export const landingPageContent: LandingPageContent = {
       {
         question: "What types of surveys can I create?",
         answer:
-          "SurveyFlow supports various survey types, including multiple-choice, Likert scale, open-ended, and rating-based surveys, catering to diverse feedback needs.",
+          "SurveyFlow supports multiple-choice, Likert scale, open-ended, and rating-based surveys, catering to diverse feedback needs.",
       },
       {
         question: "Is my customer data secure with SurveyFlow?",
@@ -232,11 +209,6 @@ export const landingPageContent: LandingPageContent = {
         question: "How much does SurveyFlow cost?",
         answer:
           "We offer flexible pricing plans tailored to your business size and needs. Visit our pricing page for detailed information on available options.",
-      },
-      {
-        question: "Can I track the tree-planting impact of my surveys?",
-        answer:
-          "Yes, we provide detailed reports on the number of trees planted through your surveys, so you can see the environmental impact you're making.",
       },
       {
         question: "Do you offer customer support?",

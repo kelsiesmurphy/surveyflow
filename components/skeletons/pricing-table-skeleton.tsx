@@ -1,10 +1,8 @@
-// components/pricing-skeleton.tsx
-
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function PricingTableSkeleton() {
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="w-full grid gap-4 md:grid-cols-2">
       {[...Array(2)].map((_, i) => (
         <div
           key={i}

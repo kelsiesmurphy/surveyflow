@@ -39,12 +39,7 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <LenisWrapper>
-                <div className="flex flex-col min-h-screen">
-                  <Header />
-                  <main id="content" className="flex-1 flex pt-16">
-                    {children}
-                  </main>
-                </div>
+                <div className="flex flex-col min-h-screen">{children}</div>
               </LenisWrapper>
             </ThemeProvider>
           </body>

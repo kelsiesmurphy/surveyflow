@@ -8,12 +8,11 @@ export default function PricingPage() {
       <div className="max-w-4xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold">
-            Choose Your Explorer Plan
+            Choose Your Plan
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            Get started with our free Explorer plan, or unlock premium features
-            with Explorer Plus. Both plans give you access to interactive
-            challenges and a community of fellow explorers.
+            Get started with SurveyFlow for free, or upgrade to Pro to unlock
+            unlimited surveys, advanced customization, and powerful analytics.
           </p>
         </div>
         <PricingTable fallback={<PricingTableSkeleton />} />

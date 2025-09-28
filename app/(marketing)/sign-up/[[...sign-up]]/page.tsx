@@ -1,10 +1,11 @@
+import { SignUpSkeleton } from "@/components/skeletons/sign-up-skeleton";
 import { SignUp } from "@clerk/nextjs";
 import { FileText, Layers, BarChart2, Palette } from "lucide-react";
 
 export default function SignUpPage() {
   return (
-    <div className="grid flex-1 lg:grid-cols-2">
-      <div className="hidden flex-1 items-center justify-end p-6 md:p-10 lg:flex">
+    <div className="flex-1 flex items-center">
+      <div className="flex-1 p-6 md:p-10 flex gap-8 md:gap-20 items-center">
         <ul className="max-w-sm space-y-8">
           <li>
             <div className="flex items-center gap-2">
@@ -41,14 +42,11 @@ export default function SignUpPage() {
               <p className="font-semibold">Professional Look</p>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
-              Customize your surveys’ appearance to match your style or brand.
+              Customize your surveys' appearance to match your style or brand.
             </p>
           </li>
         </ul>
-      </div>
-
-      <div className="flex flex-1 items-center justify-center p-6 md:p-10 lg:justify-start">
-        <SignUp />
+        <SignUp fallback={<SignUpSkeleton />} />
       </div>
     </div>
   );

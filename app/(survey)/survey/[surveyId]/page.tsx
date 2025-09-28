@@ -70,13 +70,13 @@ export default function TakeSurvey({
   // Initial start screen
   if (!sessionId) {
     return (
-      <div className="p-4">
+      <>
         <h1 className="text-xl font-bold mb-4">{survey.title}</h1>
         <p>{survey.description}</p>
         <Button onClick={handleStart} className="mt-4">
           Start Survey
         </Button>
-      </div>
+      </>
     );
   }
 
