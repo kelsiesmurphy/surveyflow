@@ -128,7 +128,7 @@ test("get session with answers", async () => {
   });
 
   expect(session?.answers.length).toBe(1);
-  expect(session?.answers[0].question?.text).toContain("hear about us");
+  expect(session?.answers[0].question?.title).toContain("hear about us");
 });
 
 test("get user survey sessions", async () => {

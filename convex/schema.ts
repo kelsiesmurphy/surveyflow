@@ -6,13 +6,14 @@ export default defineSchema({
   // Individual questions or steps in a survey
   survey_questions: defineTable({
     surveyId: v.id("surveys"),
-    text: v.optional(v.string()), // Question text (or null for welcome/thank-you screens)
+    title: v.optional(v.string()), // Question title (or null for welcome/thank-you screens)
+    subtitle: v.optional(v.string()), // Question subtitle (or null for welcome/thank-you screens)
     type: v.string(), // "multiple_choice" | "text" | "rating" | "welcome" | "thank_you"
     options: v.optional(
       v.array(
         v.object({
           label: v.string(), // Option label ("Google", "YouTube", etc.)
-          iconUrl: v.optional(v.string()), // Optional image/icon for the choice
+          iconStorageId: v.optional(v.string()), // Optional image/icon for the choice
           hasOther: v.optional(v.boolean()), // Supports an "Other" textbox
         })
       )
@@ -25,6 +26,8 @@ export default defineSchema({
   surveys: defineTable({
     title: v.string(),
     description: v.optional(v.string()),
+    coverImageStorageId: v.optional(v.string()),
+    coverImageAlt: v.optional(v.string()),
     createdBy: v.string(), // userId
     questionIds: v.array(v.id("survey_questions")),
     createdAt: v.number(),

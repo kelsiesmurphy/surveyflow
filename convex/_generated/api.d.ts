@@ -13,6 +13,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as http from "../http.js";
 import type * as seed from "../seed.js";
 import type * as surveys from "../surveys.js";
 
@@ -25,6 +26,7 @@ import type * as surveys from "../surveys.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  http: typeof http;
   seed: typeof seed;
   surveys: typeof surveys;
 }>;

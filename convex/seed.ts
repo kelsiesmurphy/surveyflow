@@ -10,7 +10,9 @@ export const seedNpsSurvey = mutation({
     // Insert survey first (will patch in question IDs later)
     const surveyId = await db.insert("surveys", {
       title: "Customer Feedback Survey",
-      description: "A sample NPS-style survey to get started.",
+      description: "A sample NPS-style survey.",
+      coverImageStorageId: "kg227qszdv53kwavzka2tr58797rfcrt",
+      coverImageAlt: "Building exterior",
       createdBy,
       questionIds: [],
       createdAt,
@@ -20,25 +22,41 @@ export const seedNpsSurvey = mutation({
     const questions = [
       {
         surveyId,
-        text: "How did you hear about us?",
+        title: "How did you hear about us?",
+        subtitle: "Select one option",
         type: "multiple_choice",
         order: 1,
         options: [
-          { label: "Google", iconUrl: "/icons/google.png" },
-          { label: "YouTube", iconUrl: "/icons/youtube.png" },
-          { label: "Social Media", iconUrl: "/icons/social.png" },
-          { label: "Other", hasOther: true },
+          {
+            label: "Google",
+            iconStorageId: "kg29jt4ch4ac0j66q8jgmvbdes7rf9z2",
+          },
+          {
+            label: "YouTube",
+            iconStorageId: "kg2emsf6cqkc34n6pgpm62zqqd7rfm7f",
+          },
+          {
+            label: "Social Media",
+            iconStorageId: "kg242g5yf55yt9thyfvj8qzh657rev9f",
+          },
+          {
+            label: "Other",
+            iconStorageId: "kg2dk1wcdrwtjznzwzfh0fmgax7rftpp",
+            hasOther: true,
+          },
         ],
       },
       {
         surveyId,
-        text: "Can you share more details? (e.g. which video or channel on YouTube?)",
+        title: "Can you share more details?",
+        subtitle: "For example, which video or channel on YouTube?",
         type: "text",
         order: 2,
       },
       {
         surveyId,
-        text: "What’s most appealing about our company?",
+        title: "What is appealing about our company?",
+        subtitle: "Select as many options as you like",
         type: "multiple_choice",
         order: 3,
         options: [
@@ -50,7 +68,8 @@ export const seedNpsSurvey = mutation({
       },
       {
         surveyId,
-        text: "When did you first hear about us?",
+        title: "When did you first hear about us?",
+        subtitle: "Select one option",
         type: "multiple_choice",
         order: 4,
         options: [
@@ -62,7 +81,8 @@ export const seedNpsSurvey = mutation({
       },
       {
         surveyId,
-        text: "Who is this purchase for?",
+        title: "Who is this purchase for?",
+        subtitle: "Select one option",
         type: "multiple_choice",
         order: 5,
         options: [
@@ -74,14 +94,14 @@ export const seedNpsSurvey = mutation({
       },
       {
         surveyId,
-        text: "How likely are you to recommend us to a friend?",
+        title: "How likely are you to recommend us to a friend?",
         type: "rating",
         order: 6,
         metadata: { scale: 10 }, // NPS-style 0–10 scale
       },
       {
         surveyId,
-        text: "Thank you for your time!",
+        title: "Thank you for your time!",
         type: "thank_you",
         order: 7,
       },

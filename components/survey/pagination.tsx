@@ -6,7 +6,7 @@ export default function SurveyPagination({
   total: number;
 }>) {
   return (
-    <div className="mt-4 flex justify-center gap-4">
+    <div className="mt-6 flex justify-center gap-4">
       {Array.from({ length: total }).map((_, i) => (
         <span
           key={i}
