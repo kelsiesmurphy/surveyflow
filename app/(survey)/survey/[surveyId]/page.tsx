@@ -3,7 +3,7 @@
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useAuth } from "@clerk/nextjs";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Id } from "@/convex/_generated/dataModel";
 import { use } from "react";
@@ -20,7 +20,6 @@ export default function TakeSurvey({
 
   const survey = useQuery(api.surveys.getSurveyWithQuestions, { surveyId });
   const start = useMutation(api.surveys.startSurvey);
-  const answer = useMutation(api.surveys.answerSurveyQuestion);
   const complete = useMutation(api.surveys.completeSurvey);
 
   const [sessionId, setSessionId] = useState<Id<"survey_sessions"> | null>(
@@ -28,15 +27,11 @@ export default function TakeSurvey({
   );
   const [index, setIndex] = useState(0);
 
-  // top-level state for text questions
-  const [text, setText] = useState("");
+  // persistent answers by questionId
+  const [answers, setAnswers] = useState<Record<string, any>>({});
 
   const questions = (survey?.questions ?? []).filter(Boolean);
   const current = questions[index];
-
-  useEffect(() => {
-    if (current?.type === "text") setText("");
-  }, [index, current?.type]);
 
   if (!survey || !current) {
     return <div>Loading…</div>;
@@ -50,20 +45,23 @@ export default function TakeSurvey({
     setSessionId(sId);
   }
 
-  async function handleAnswerGeneric(answerValue: any, metadata?: unknown) {
-    if (!sessionId || !current) return;
-
-    await answer({
-      sessionId,
-      questionId: current._id,
-      answer: answerValue,
-      metadata,
-    });
-
+  function handleNext() {
     if (index + 1 < questions.length) {
       setIndex(index + 1);
     } else {
-      await complete({ sessionId });
+      if (sessionId) {
+        complete({ sessionId });
+      }
+    }
+  }
+
+  function handleBack() {
+    if (index > 0) setIndex(index - 1);
+  }
+
+  function updateAnswer(value: any) {
+    if (current) {
+      setAnswers((prev) => ({ ...prev, [current._id]: value }));
     }
   }
 
@@ -86,7 +84,14 @@ export default function TakeSurvey({
       return (
         <div className="p-4 space-y-4">
           <p className="text-xl">{current.text}</p>
-          <Button onClick={() => setIndex(index + 1)}>Continue</Button>
+          <div className="flex gap-2">
+            {index > 0 && (
+              <Button variant="outline" onClick={handleBack}>
+                Back
+              </Button>
+            )}
+            <Button onClick={handleNext}>Next</Button>
+          </div>
         </div>
       );
 
@@ -102,28 +107,40 @@ export default function TakeSurvey({
         <div className="p-4 space-y-4">
           <p className="text-xl">{current.text}</p>
           <div className="grid gap-2 mt-4">
-            {current.options?.map((opt: any, i: number) => (
-              <Button
-                key={i}
-                variant="outline"
-                onClick={() =>
-                  handleAnswerGeneric(
-                    opt.hasOther
-                      ? { selected: opt.label, other: "" }
-                      : opt.label
-                  )
-                }
-              >
-                {opt.iconUrl && (
-                  <img
-                    src={opt.iconUrl}
-                    alt={opt.label}
-                    className="inline-block w-5 h-5 mr-2"
-                  />
-                )}
-                {opt.label}
+            {current.options?.map((opt: any, i: number) => {
+              const value = opt.hasOther
+                ? { selected: opt.label, other: "" }
+                : opt.label;
+              const isSelected =
+                JSON.stringify(answers[current._id]) === JSON.stringify(value);
+
+              return (
+                <Button
+                  key={i}
+                  variant={isSelected ? "default" : "outline"}
+                  onClick={() => updateAnswer(value)}
+                >
+                  {opt.iconUrl && (
+                    <img
+                      src={opt.iconUrl}
+                      alt={opt.label}
+                      className="inline-block w-5 h-5 mr-2"
+                    />
+                  )}
+                  {opt.label}
+                </Button>
+              );
+            })}
+          </div>
+          <div className="flex gap-2 mt-6">
+            {index > 0 && (
+              <Button variant="outline" onClick={handleBack}>
+                Back
               </Button>
-            ))}
+            )}
+            <Button onClick={handleNext} disabled={!answers[current._id]}>
+              Next
+            </Button>
           </div>
         </div>
       );
@@ -134,10 +151,26 @@ export default function TakeSurvey({
           <p className="text-xl">{current.text}</p>
           <textarea
             className="w-full p-2 border rounded"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            value={answers[current._id] ?? ""}
+            onChange={(e) => updateAnswer(e.target.value)}
           />
-          <Button onClick={() => handleAnswerGeneric(text)}>Submit</Button>
+          <div className="flex gap-2 mt-4">
+            {index > 0 && (
+              <Button variant="outline" onClick={handleBack}>
+                Back
+              </Button>
+            )}
+            <Button
+              onClick={handleNext}
+              disabled={
+                !answers[current._id] ||
+                (typeof answers[current._id] === "string" &&
+                  !answers[current._id].trim())
+              }
+            >
+              Next
+            </Button>
+          </div>
         </div>
       );
 
@@ -147,12 +180,30 @@ export default function TakeSurvey({
           <p className="text-xl">{current.text}</p>
           <div className="flex gap-2 mt-2">
             {Array.from({ length: current.metadata?.scale || 5 }).map(
-              (_, i) => (
-                <Button key={i} onClick={() => handleAnswerGeneric(i + 1)}>
-                  {i + 1}
-                </Button>
-              )
+              (_, i) => {
+                const value = i + 1;
+                const isSelected = answers[current._id] === value;
+                return (
+                  <Button
+                    key={i}
+                    variant={isSelected ? "default" : "outline"}
+                    onClick={() => updateAnswer(value)}
+                  >
+                    {value}
+                  </Button>
+                );
+              }
             )}
+          </div>
+          <div className="flex gap-2 mt-6">
+            {index > 0 && (
+              <Button variant="outline" onClick={handleBack}>
+                Back
+              </Button>
+            )}
+            <Button onClick={handleNext} disabled={!answers[current._id]}>
+              Next
+            </Button>
           </div>
         </div>
       );

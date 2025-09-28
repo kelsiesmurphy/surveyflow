@@ -14,7 +14,7 @@ export default function SurveyPage() {
   return (
     <div className="flex flex-1 justify-center">
       <div className="w-full max-w-xl p-4 space-y-4">
-        <h1 className="text-2xl font-bold">Surveys</h1>
+        <h1 className="text-2xl font-bold">Surveys (Development Only)</h1>
         {surveys.map((survey) => (
           <Card key={survey._id}>
             <CardHeader>
