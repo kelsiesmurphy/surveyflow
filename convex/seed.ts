@@ -20,15 +20,9 @@ export const seedNpsSurvey = mutation({
     const questions = [
       {
         surveyId,
-        text: "Welcome to our survey!",
-        type: "welcome",
-        order: 1,
-      },
-      {
-        surveyId,
         text: "How did you hear about us?",
         type: "multiple_choice",
-        order: 2,
+        order: 1,
         options: [
           { label: "Google", iconUrl: "/icons/google.png" },
           { label: "YouTube", iconUrl: "/icons/youtube.png" },
@@ -40,13 +34,13 @@ export const seedNpsSurvey = mutation({
         surveyId,
         text: "Can you share more details? (e.g. which video or channel on YouTube?)",
         type: "text",
-        order: 3,
+        order: 2,
       },
       {
         surveyId,
         text: "What’s most appealing about our company?",
         type: "multiple_choice",
-        order: 4,
+        order: 3,
         options: [
           { label: "Our mission" },
           { label: "Our values" },
@@ -58,7 +52,7 @@ export const seedNpsSurvey = mutation({
         surveyId,
         text: "When did you first hear about us?",
         type: "multiple_choice",
-        order: 5,
+        order: 4,
         options: [
           { label: "Less than a month ago" },
           { label: "1-6 months ago" },
@@ -70,7 +64,7 @@ export const seedNpsSurvey = mutation({
         surveyId,
         text: "Who is this purchase for?",
         type: "multiple_choice",
-        order: 6,
+        order: 5,
         options: [
           { label: "Myself" },
           { label: "A friend or family member" },
@@ -82,14 +76,14 @@ export const seedNpsSurvey = mutation({
         surveyId,
         text: "How likely are you to recommend us to a friend?",
         type: "rating",
-        order: 7,
+        order: 6,
         metadata: { scale: 10 }, // NPS-style 0–10 scale
       },
       {
         surveyId,
         text: "Thank you for your time!",
         type: "thank_you",
-        order: 8,
+        order: 7,
       },
     ];
 

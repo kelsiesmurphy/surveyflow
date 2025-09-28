@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <div className="flex flex-1 justify-center">
-      <div className="w-full max-w-xl p-4 space-y-4">{children}</div>
+      <div className="w-full max-w-xl p-4 space-y-4 flex-1 flex">
+        {children}
+      </div>
     </div>
   );
 }

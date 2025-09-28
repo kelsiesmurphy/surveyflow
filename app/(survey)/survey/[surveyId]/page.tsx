@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Id } from "@/convex/_generated/dataModel";
 import { use } from "react";
+import QuestionWrapper from "@/components/survey/question-wrapper";
 
 export default function TakeSurvey({
   params,
@@ -27,7 +28,6 @@ export default function TakeSurvey({
   );
   const [index, setIndex] = useState(0);
 
-  // persistent answers by questionId
   const [answers, setAnswers] = useState<Record<string, any>>({});
 
   const questions = (survey?.questions ?? []).filter(Boolean);
@@ -48,10 +48,8 @@ export default function TakeSurvey({
   function handleNext() {
     if (index + 1 < questions.length) {
       setIndex(index + 1);
-    } else {
-      if (sessionId) {
-        complete({ sessionId });
-      }
+    } else if (sessionId) {
+      complete({ sessionId });
     }
   }
 
@@ -65,46 +63,51 @@ export default function TakeSurvey({
     }
   }
 
-  // Initial start screen
+  // Intro screen (no navigation)
   if (!sessionId) {
     return (
-      <>
+      <QuestionWrapper index={index} total={questions.length}>
         <h1 className="text-xl font-bold mb-4">{survey.title}</h1>
         <p>{survey.description}</p>
-        <Button onClick={handleStart} className="mt-4">
+        <Button onClick={handleStart} className="mt-4 flex-1">
           Start Survey
         </Button>
-      </>
+      </QuestionWrapper>
     );
   }
 
-  // Render logic for different question types
+  // Question types
   switch (current.type) {
     case "welcome":
       return (
-        <div className="p-4 space-y-4">
+        <QuestionWrapper
+          index={index}
+          total={questions.length}
+          navigation={{ index, handleNext, handleBack }}
+        >
           <p className="text-xl">{current.text}</p>
-          <div className="flex gap-2">
-            {index > 0 && (
-              <Button variant="outline" onClick={handleBack}>
-                Back
-              </Button>
-            )}
-            <Button onClick={handleNext}>Next</Button>
-          </div>
-        </div>
+        </QuestionWrapper>
       );
 
     case "thank_you":
       return (
-        <div className="p-4">
+        <QuestionWrapper index={index} total={questions.length}>
           <h2 className="text-xl font-semibold">{current.text}</h2>
-        </div>
+        </QuestionWrapper>
       );
 
     case "multiple_choice":
       return (
-        <div className="p-4 space-y-4">
+        <QuestionWrapper
+          index={index}
+          total={questions.length}
+          navigation={{
+            index,
+            handleNext,
+            handleBack,
+            disabledNext: !answers[current._id],
+          }}
+        >
           <p className="text-xl">{current.text}</p>
           <div className="grid gap-2 mt-4">
             {current.options?.map((opt: any, i: number) => {
@@ -132,51 +135,45 @@ export default function TakeSurvey({
               );
             })}
           </div>
-          <div className="flex gap-2 mt-6">
-            {index > 0 && (
-              <Button variant="outline" onClick={handleBack}>
-                Back
-              </Button>
-            )}
-            <Button onClick={handleNext} disabled={!answers[current._id]}>
-              Next
-            </Button>
-          </div>
-        </div>
+        </QuestionWrapper>
       );
 
     case "text":
       return (
-        <div className="p-4 space-y-4">
+        <QuestionWrapper
+          index={index}
+          total={questions.length}
+          navigation={{
+            index,
+            handleNext,
+            handleBack,
+            disabledNext:
+              !answers[current._id] ||
+              (typeof answers[current._id] === "string" &&
+                !answers[current._id].trim()),
+          }}
+        >
           <p className="text-xl">{current.text}</p>
           <textarea
             className="w-full p-2 border rounded"
             value={answers[current._id] ?? ""}
             onChange={(e) => updateAnswer(e.target.value)}
           />
-          <div className="flex gap-2 mt-4">
-            {index > 0 && (
-              <Button variant="outline" onClick={handleBack}>
-                Back
-              </Button>
-            )}
-            <Button
-              onClick={handleNext}
-              disabled={
-                !answers[current._id] ||
-                (typeof answers[current._id] === "string" &&
-                  !answers[current._id].trim())
-              }
-            >
-              Next
-            </Button>
-          </div>
-        </div>
+        </QuestionWrapper>
       );
 
     case "rating":
       return (
-        <div className="p-4 space-y-4">
+        <QuestionWrapper
+          index={index}
+          total={questions.length}
+          navigation={{
+            index,
+            handleNext,
+            handleBack,
+            disabledNext: !answers[current._id],
+          }}
+        >
           <p className="text-xl">{current.text}</p>
           <div className="flex gap-2 mt-2">
             {Array.from({ length: current.metadata?.scale || 5 }).map(
@@ -195,20 +192,14 @@ export default function TakeSurvey({
               }
             )}
           </div>
-          <div className="flex gap-2 mt-6">
-            {index > 0 && (
-              <Button variant="outline" onClick={handleBack}>
-                Back
-              </Button>
-            )}
-            <Button onClick={handleNext} disabled={!answers[current._id]}>
-              Next
-            </Button>
-          </div>
-        </div>
+        </QuestionWrapper>
       );
 
     default:
-      return <div>Unsupported question type</div>;
+      return (
+        <QuestionWrapper index={index} total={questions.length}>
+          Unsupported question type
+        </QuestionWrapper>
+      );
   }
 }

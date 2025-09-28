@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import NavItems from "./nav-items";
 
-export function MobileNav() {
+export default function MobileNav() {
   const [open, setOpen] = useState(false);
 
   return (
