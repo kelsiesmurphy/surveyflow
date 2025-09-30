@@ -1,4 +1,4 @@
-import Footer from "@/components/footer";
+import Footer from "@/components/marketing/footer";
 import { PricingTableSkeleton } from "@/components/skeletons/pricing-table-skeleton";
 import { PricingTable } from "@clerk/nextjs";
 

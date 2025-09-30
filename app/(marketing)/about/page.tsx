@@ -8,7 +8,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { brand } from "@/lib/constants/brand";
-import Footer from "@/components/footer";
+import Footer from "@/components/marketing/footer";
 
 export default function AboutUs() {
   return (

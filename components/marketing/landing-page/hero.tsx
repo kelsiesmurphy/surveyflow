@@ -1,7 +1,7 @@
 import React from "react";
 import { HeroSection } from "@/lib/constants/landing-page";
 import { Badge } from "@/components/ui/badge";
-import CTAButtons from "@/components/common/cta-buttons";
+import CTAButtons from "@/components/marketing/common/cta-buttons";
 
 export default function Hero({ content }: { content: HeroSection }) {
   return (

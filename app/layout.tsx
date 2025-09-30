@@ -1,12 +1,10 @@
 import { ClerkProvider } from "@/components/providers/clerk-provider";
-import { Header } from "@/components/header";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Plausible from "@/components/plausible-analytics";
 import { brand } from "@/lib/constants/brand";
-import LenisWrapper from "@/components/lenis-wrapper";
+import LenisWrapper from "@/components/marketing/lenis-wrapper";
 import ConvexClientProvider from "@/components/providers/convex-client-provider";
 
 const interSans = Inter({
@@ -29,7 +27,7 @@ export default function RootLayout({
       <ConvexClientProvider>
         <html lang="en" className="h-full" suppressHydrationWarning>
           <head>
-            <Plausible />
+            
           </head>
           <body className={`${interSans.variable} antialiased`}>
             <ThemeProvider

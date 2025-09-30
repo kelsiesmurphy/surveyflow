@@ -1,5 +1,5 @@
 import { PricingSection } from "@/lib/constants/landing-page";
-import { PricingTableSkeleton } from "../skeletons/pricing-table-skeleton";
+import { PricingTableSkeleton } from "@/components/skeletons/pricing-table-skeleton";
 import { PricingTable } from "@clerk/nextjs";
 
 export default function Pricing({ content }: { content: PricingSection }) {

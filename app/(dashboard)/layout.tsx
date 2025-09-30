@@ -1,6 +1,6 @@
-import { Header } from "@/components/marketing/header";
+import { Header } from "@/components/dashboard/header";
 
-export default function MarketingLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
