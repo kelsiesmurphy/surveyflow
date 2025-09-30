@@ -1,6 +1,6 @@
 "use client";
 
-import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import {
   Sheet,
   SheetContent,
@@ -14,10 +14,9 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { navItems } from "@/lib/constants/navigation-items";
-import { Authenticated, Unauthenticated } from "convex/react";
+import { dashboardNavItems } from "@/lib/constants/navigation-items";
 
-export default function MobileNavigation() {
+export default function MobileNavigation({ surveyId }: { surveyId: string }) {
   const [sheetOpen, setSheetOpen] = useState(false);
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -32,30 +31,14 @@ export default function MobileNavigation() {
           <SheetTitle>Menu</SheetTitle>
         </SheetHeader>
         <div className="flex flex-col gap-4 mt-4">
-          <Unauthenticated>
-            {navItems.map((item) => (
-              <SheetClose asChild key={item.href}>
-                <Button variant="ghost" asChild>
-                  <Link href={item.href}>{item.label}</Link>
-                </Button>
-              </SheetClose>
-            ))}
-            <hr className="my-2" />
-            <SignInButton>
-              <SheetClose asChild>
-                <Button variant="outline">Sign in</Button>
-              </SheetClose>
-            </SignInButton>
-            <SignUpButton>
-              <SheetClose asChild>
-                <Button>Sign up</Button>
-              </SheetClose>
-            </SignUpButton>
-          </Unauthenticated>
-
-          <Authenticated>
-            <UserButton />
-          </Authenticated>
+          {dashboardNavItems(surveyId).map((item) => (
+            <SheetClose asChild key={item.href}>
+              <Button variant="ghost" asChild>
+                <Link href={item.href}>{item.label}</Link>
+              </Button>
+            </SheetClose>
+          ))}
+          <UserButton />
         </div>
       </SheetContent>
     </Sheet>

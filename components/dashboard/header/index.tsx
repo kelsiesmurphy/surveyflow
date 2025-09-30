@@ -1,15 +1,15 @@
 import DesktopNavigation from "./desktop-navigation";
 import Logo from "./logo";
 import MobileNavigation from "./mobile-navigation";
-import SkipToContent from "./skip-to-content";
+import SkipToContent from "@/components/skip-to-content";
 
-export function Header() {
+export function Header({ surveyId }: { surveyId: string }) {
   return (
-    <header className="z-10 bg-background flex fixed w-full h-16 items-center justify-between px-4 border-b">
+    <header className="z-10 bg-background flex fixed w-full h-16 items-center px-4 gap-6 justify-between md:justify-baseline border-b">
       <SkipToContent />
       <Logo />
-      <DesktopNavigation />
-      <MobileNavigation />
+      <DesktopNavigation surveyId={surveyId} />
+      <MobileNavigation surveyId={surveyId} />
     </header>
   );
 }

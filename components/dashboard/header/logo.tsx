@@ -37,8 +37,6 @@ export default function Logo() {
           strokeWidth="6"
         />
       </svg>
-
-      <span className="font-semibold">{brand.name}</span>
     </Link>
   );
 }

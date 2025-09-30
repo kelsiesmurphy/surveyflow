@@ -14,7 +14,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { navItems } from "@/lib/constants/navigation-items";
+import { marketingNavItems } from "@/lib/constants/navigation-items";
 import { Authenticated, Unauthenticated } from "convex/react";
 
 export default function MobileNavigation() {
@@ -33,7 +33,7 @@ export default function MobileNavigation() {
         </SheetHeader>
         <div className="flex flex-col gap-4 mt-4">
           <Unauthenticated>
-            {navItems.map((item) => (
+            {marketingNavItems.map((item) => (
               <SheetClose asChild key={item.href}>
                 <Button variant="ghost" asChild>
                   <Link href={item.href}>{item.label}</Link>

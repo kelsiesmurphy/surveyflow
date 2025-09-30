@@ -1,7 +1,7 @@
 import DesktopNavigation from "./desktop-navigation";
 import Logo from "./logo";
 import MobileNavigation from "./mobile-navigation";
-import SkipToContent from "./skip-to-content";
+import SkipToContent from "@/components/skip-to-content";
 
 export function Header() {
   return (

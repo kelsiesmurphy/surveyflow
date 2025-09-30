@@ -5,13 +5,13 @@ import { Authenticated, Unauthenticated } from "convex/react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { navItems } from "@/lib/constants/navigation-items";
+import { marketingNavItems } from "@/lib/constants/navigation-items";
 
 export default function DesktopNavigation() {
   return (
     <div className="hidden md:flex items-center gap-x-4">
       <Unauthenticated>
-        {navItems.map((item) => (
+        {marketingNavItems.map((item) => (
           <Button variant="ghost" asChild key={item.href}>
             <Link href={item.href}>{item.label}</Link>
           </Button>
