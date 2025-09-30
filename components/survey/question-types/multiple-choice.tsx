@@ -1,4 +1,5 @@
 import { getConvexImageUrl } from "@/lib/utils";
+import Image from "next/image";
 import React from "react";
 
 export default function MultipleChoiceQuestion({
@@ -29,7 +30,7 @@ export default function MultipleChoiceQuestion({
           >
             <div>
               {opt.iconStorageId && (
-                <img
+                <Image
                   src={getConvexImageUrl(opt.iconStorageId)}
                   alt={opt.label}
                   className="inline-block size-6 mr-3"

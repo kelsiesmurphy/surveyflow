@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { brand } from "@/lib/constants/brand";
 import Footer from "@/components/marketing/footer";
+import Link from "next/link";
 
 export default function AboutUs() {
   return (
@@ -23,7 +24,7 @@ export default function AboutUs() {
             "Surveyflow is a simple and intuitive platform for creating surveys, collecting responses, and gaining insights. Our goal is to make feedback easy to gather and actionable."}
         </p>
         <Button asChild>
-          <a href="/sign-up">Join the Community</a>
+          <Link href="/sign-up">Join the Community</Link>
         </Button>
       </section>
 
@@ -67,11 +68,11 @@ export default function AboutUs() {
       <section className="space-y-6 md:space-y-8 max-w-3xl">
         <h2 className="text-3xl font-semibold">Our Team</h2>
         <p className="text-muted-foreground">
-          We're a group of passionate creators and developers building tools to
+          We&apos;re a group of passionate creators and developers building tools to
           make surveys simple, accessible, and actionable for everyone.
         </p>
         <Button asChild>
-          <a href="/contact">Contact Us</a>
+          <Link href="/contact">Contact Us</Link>
         </Button>
       </section>
 

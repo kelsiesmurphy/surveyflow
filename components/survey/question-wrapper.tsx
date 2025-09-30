@@ -1,6 +1,7 @@
 import React from "react";
 import SurveyPagination from "./pagination";
 import NavigationButtons from "./navigation-buttons";
+import Link from "next/link";
 
 type NavigationConfig = {
   index: number;
@@ -47,9 +48,9 @@ export default function QuestionWrapper({
         <SurveyPagination index={index} total={total} />
         <p className="text-[10px] text-muted-foreground text-center mt-4">
           Powered by{" "}
-          <a href="/" className="font-semibold text-primary hover:underline">
+          <Link href="/" className="font-semibold text-primary hover:underline">
             SurveyFlow
-          </a>
+          </Link>
         </p>
       </div>
     </div>

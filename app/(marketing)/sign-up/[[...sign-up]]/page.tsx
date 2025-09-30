@@ -42,7 +42,7 @@ export default function SignUpPage() {
               <p className="font-semibold">Professional Look</p>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
-              Customize your surveys' appearance to match your style or brand.
+              Customize your surveys&apos; appearance to match your style or brand.
             </p>
           </li>
         </ul>

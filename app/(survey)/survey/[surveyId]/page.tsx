@@ -12,6 +12,7 @@ import MultipleChoiceQuestion from "@/components/survey/question-types/multiple-
 import TextAreaQuestion from "@/components/survey/question-types/text-area";
 import RatingQuestion from "@/components/survey/question-types/rating";
 import { getConvexImageUrl } from "@/lib/utils";
+import Image from "next/image";
 
 export default function TakeSurvey({
   params,
@@ -72,9 +73,11 @@ export default function TakeSurvey({
     return (
       <QuestionWrapper index={index} total={questions.length}>
         {survey.coverImageStorageId && (
-          <img
+          <Image
             src={getConvexImageUrl(survey.coverImageStorageId)}
-            alt={survey.coverImageAlt}
+            alt={
+              survey.coverImageAlt ? survey.coverImageAlt : "Survey Cover Image"
+            }
             className="aspect-[4/3] w-full rounded-xl object-cover"
           />
         )}
