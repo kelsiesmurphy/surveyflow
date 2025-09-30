@@ -27,7 +27,10 @@ export default function RootLayout({
       <ConvexClientProvider>
         <html lang="en" className="h-full" suppressHydrationWarning>
           <head>
-            
+            <script
+              async
+              src="https://scripts.simpleanalyticscdn.com/latest.js"
+            ></script>
           </head>
           <body className={`${interSans.variable} antialiased`}>
             <ThemeProvider
