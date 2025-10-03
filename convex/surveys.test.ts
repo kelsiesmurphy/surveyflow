@@ -40,7 +40,6 @@ async function seedSurvey(t: ReturnType<typeof convexTest>) {
     })
   );
 
-  // Patch the questions with the real surveyId
   await t.run(({ db }) => db.patch(q1, { surveyId: survey }));
   await t.run(({ db }) => db.patch(q2, { surveyId: survey }));
 

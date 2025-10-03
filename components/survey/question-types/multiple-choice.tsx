@@ -33,7 +33,10 @@ export default function MultipleChoiceQuestion({
                 <Image
                   src={getConvexImageUrl(opt.iconStorageId)}
                   alt={opt.label}
-                  className="inline-block size-6 mr-3"
+                  width={24}
+                  height={24}
+                  unoptimized
+                  className="inline-block text-foreground size-6 mr-3"
                 />
               )}
               {opt.label}

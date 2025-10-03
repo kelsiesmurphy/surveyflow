@@ -105,3 +105,60 @@ export const getUserSurveySessions = query({
       .collect();
   },
 });
+
+
+
+export const getSurveySessionsReport = query({
+  args: { surveyId: v.id("surveys") },
+  handler: async ({ db }, { surveyId }) => {
+    const survey = await db.get(surveyId);
+    if (!survey) return null;
+
+    // All sessions for this survey
+    const sessions = await db
+      .query("survey_sessions")
+      .withIndex("by_survey", (q) => q.eq("surveyId", surveyId))
+      .collect();
+
+    let completedCount = 0;
+
+    const sessionsWithAnswers = await Promise.all(
+      sessions.map(async (session) => {
+        const answers = await db
+          .query("survey_answers")
+          .withIndex("by_session", (q) => q.eq("sessionId", session._id))
+          .collect();
+
+        const isCompleted = !!session.completedAt;
+        if (isCompleted) completedCount++;
+
+        return {
+          sessionId: session._id,
+          respondentId: session.respondentId ?? "Anonymous",
+          startedAt: session.startedAt,
+          completedAt: session.completedAt ?? null,
+          status: isCompleted ? "Completed" : "Abandoned",
+          answersCount: answers.length,
+        };
+      })
+    );
+
+    const total = sessions.length;
+    const completionRate = total > 0 ? (completedCount / total) * 100 : 0;
+
+    return {
+      survey: {
+        _id: survey._id,
+        title: survey.title,
+        description: survey.description,
+      },
+      stats: {
+        totalSessions: total,
+        completedCount,
+        abandonedCount: total - completedCount,
+        completionRate, // %
+      },
+      sessions: sessionsWithAnswers,
+    };
+  },
+});

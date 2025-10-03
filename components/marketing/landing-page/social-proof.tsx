@@ -8,7 +8,6 @@ export default function SocialProof({
 }: {
   content: SocialProofSection;
 }) {
-  // Check if the user prefers reduced motion
   const prefersReducedMotion = useReducedMotion();
 
   return (

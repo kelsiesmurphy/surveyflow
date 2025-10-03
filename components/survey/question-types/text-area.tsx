@@ -12,9 +12,11 @@ export default function TextAreaQuestion({
 }) {
   return (
     <Textarea
-    className="min-h-48"
+      className="min-h-48"
       value={answers[current._id] ?? ""}
-      onChange={(e) => updateAnswer(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+        updateAnswer(e.target.value)
+      }
     />
   );
 }

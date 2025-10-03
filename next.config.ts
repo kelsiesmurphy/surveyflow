@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "fearless-mandrill-152.convex.site",
+        port: "",
+        pathname: "/getImage",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -9,7 +9,7 @@ export default function Hero({ content }: { content: HeroSection }) {
       <div className="max-w-2xl flex flex-col items-center gap-8">
         <div className="p-1 pr-3 rounded-full flex gap-2 items-center bg-secondary">
           <Badge>{content.badge.subtext}</Badge>
-          <p className="text-sm font-medium">{content.badge.text}</p>
+          <p className="text-sm font-medium dark:text-background">{content.badge.text}</p>
         </div>
         <h1 className="text-4xl md:text-7xl font-semibold transition-all">
           {content.heading}

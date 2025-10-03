@@ -1,9 +1,7 @@
-// convex/schema.ts
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-  // Individual questions or steps in a survey
   survey_questions: defineTable({
     surveyId: v.id("surveys"),
     title: v.optional(v.string()), // Question title (or null for welcome/thank-you screens)
@@ -42,7 +40,7 @@ export default defineSchema({
     startedAt: v.number(),
     completedAt: v.optional(v.number()),
     metadata: v.optional(v.any()), // e.g. device info, referral source
-  }),
+  }).index("by_survey", ["surveyId"]),
 
   // Individual responses to questions
   survey_answers: defineTable({

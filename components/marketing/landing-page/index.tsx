@@ -8,6 +8,7 @@ import KeyFeatures from "./key-features";
 import Pricing from "./pricing";
 import SocialProof from "./social-proof";
 import { landingPageContent as content } from "@/lib/constants/landing-page";
+import Footer from "../footer";
 
 export default function LandingPage() {
   return (
@@ -18,6 +19,7 @@ export default function LandingPage() {
       <Features content={content.features} />
       <Pricing content={content.pricing} />
       <FrequentlyAskedQuestions content={content.frequentlyAskedQuestions} />
+      <Footer />
     </>
   );
 }

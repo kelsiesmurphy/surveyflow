@@ -21,7 +21,7 @@ export default function Features({ content }: { content: FeaturesSection }) {
         {content.features.map((feature, index) => {
           return (
             <li key={index}>
-              <Card className="p-8 h-full rounded-3xl space-y-6 border-none shadow-none bg-secondary">
+              <Card className="p-8 h-full rounded-3xl space-y-6 border-none shadow-none bg-muted">
                 {createElement(feature.icon)}
                 <div className="space-y-1">
                   <h3 className="font-semibold">{feature.heading}</h3>

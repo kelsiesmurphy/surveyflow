@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Authenticated, Unauthenticated } from "convex/react";
 import { Eye } from "lucide-react";
 import Link from "next/link";
 
@@ -18,9 +19,16 @@ export default function CTAButtons({
           <Eye /> Preview
         </Link>
       </Button>
-      <Button size={isLargeButtons ? "lg" : "default"} asChild>
-        <Link href="/sign-up">Create account</Link>
-      </Button>
+      <Unauthenticated>
+        <Button size={isLargeButtons ? "lg" : "default"} asChild>
+          <Link href="/sign-up">Create account</Link>
+        </Button>
+      </Unauthenticated>
+      <Authenticated>
+        <Button size={isLargeButtons ? "lg" : "default"} asChild>
+          <Link href="/dashboard">Dashboard</Link>
+        </Button>
+      </Authenticated>
     </div>
   );
 }

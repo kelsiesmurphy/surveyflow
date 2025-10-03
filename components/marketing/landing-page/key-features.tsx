@@ -36,7 +36,7 @@ export default function KeyFeatures({ content }: { content: FeaturesSection }) {
                 </h3>
                 <p className="md:text-xl">{feature.body}</p>
               </div>
-              <div className="bg-secondary aspect-square rounded-2xl min-w-[200px] flex-1 max-w-xl"></div>
+              <div className="bg-muted aspect-square rounded-2xl min-w-[200px] flex-1 max-w-xl"></div>
             </li>
           );
         })}

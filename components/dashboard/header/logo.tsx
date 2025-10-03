@@ -1,4 +1,3 @@
-import { brand } from "@/lib/constants/brand";
 import Link from "next/link";
 import React from "react";
 

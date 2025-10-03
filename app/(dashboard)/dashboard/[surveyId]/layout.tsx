@@ -22,7 +22,7 @@ export default function DashboardLayout({
           <Header surveyId={surveyId} />
           <main
             id="content"
-            className="flex-1 flex bg-secondary pt-16"
+            className="flex-1 flex bg-muted pt-16"
           >
             {children}
           </main>
