@@ -11,7 +11,7 @@ export default function RatingQuestion({
   updateAnswer: (value: any) => void;
 }) {
   return (
-    <div className="flex gap-2 mt-2">
+    <div className="flex gap-2 mt-2 flex-wrap">
       {Array.from({ length: current.metadata?.scale || 5 }).map((_, i) => {
         const value = i + 1;
         const isSelected = answers[current._id] === value;

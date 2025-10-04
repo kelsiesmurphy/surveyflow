@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import useLenis from "@/lib/hooks/useLenis";
 import { Monitor, Smartphone } from "lucide-react";
 import { Button } from "../ui/button";
 
@@ -19,28 +18,27 @@ export default function Sidebar({
   breakpoint: "mobile" | "desktop";
   setBreakpoint: (breakpoint: "mobile" | "desktop") => void;
 }) {
-  useLenis();
   return (
-    <div>
-      <ScrollArea className="h-[calc(100vh-4rem)] w-64 border-r bg-background flex flex-col">
-        <div className="flex gap-2 p-4 bg-muted">
-          <Button
-            className="flex-1 hover:bg-background"
-            variant={breakpoint === "desktop" ? "outline" : "ghost"}
-            onClick={() => setBreakpoint("desktop")}
-          >
-            <Monitor />
-          </Button>
-          <Button
-            className="flex-1 hover:bg-background"
-            variant={breakpoint === "mobile" ? "outline" : "ghost"}
-            onClick={() => setBreakpoint("mobile")}
-          >
-            <Smartphone />
-          </Button>
-        </div>
-        <hr />
-        <div className="flex-1 p-4 space-y-4">
+    <ScrollArea className="flex h-[calc(100vh-64px)] flex-col w-64 border-r bg-background">
+      <div className="flex sticky top-0 z-10 gap-2 border-b p-4 bg-muted shrink-0">
+        <Button
+          className="flex-1 hover:bg-background"
+          variant={breakpoint === "desktop" ? "outline" : "ghost"}
+          onClick={() => setBreakpoint("desktop")}
+        >
+          <Monitor />
+        </Button>
+        <Button
+          className="flex-1 hover:bg-background"
+          variant={breakpoint === "mobile" ? "outline" : "ghost"}
+          onClick={() => setBreakpoint("mobile")}
+        >
+          <Smartphone />
+        </Button>
+      </div>
+
+      <ScrollArea className="flex-1">
+        <div className="p-4 space-y-4">
           {questions.map((question, i) => (
             <div
               key={question._id}
@@ -62,6 +60,6 @@ export default function Sidebar({
           ))}
         </div>
       </ScrollArea>
-    </div>
+    </ScrollArea>
   );
 }

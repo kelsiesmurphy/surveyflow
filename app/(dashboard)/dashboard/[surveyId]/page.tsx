@@ -36,9 +36,10 @@ export default function SurveyDashboardPage({
         breakpoint={breakpoint}
         setBreakpoint={setBreakpoint}
       />
-      <div className="flex-1 flex justify-center items-center p-6">
+
+      <div className="flex-1 flex justify-center items-center p-6 overflow-auto">
         <div
-          className={`w-full min-h-[668px] flex rounded-2xl ${
+          className={`w-full min-h-[694px] flex rounded-2xl ${
             breakpoint === "mobile" ? "max-w-sm rounded-4xl" : "max-w-5xl"
           } border-8 shadow-xl justify-center bg-background transition-all duration-300 px-4 py-12 flex-1`}
         >

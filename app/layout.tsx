@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { brand } from "@/lib/constants/brand";
-import LenisWrapper from "@/components/marketing/lenis-wrapper";
 import ConvexClientProvider from "@/components/providers/convex-client-provider";
 
 const interSans = Inter({
@@ -39,9 +38,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <LenisWrapper>
-                <div className="flex flex-col min-h-screen">{children}</div>
-              </LenisWrapper>
+              <div className="flex flex-col min-h-screen">{children}</div>
             </ThemeProvider>
           </body>
         </html>

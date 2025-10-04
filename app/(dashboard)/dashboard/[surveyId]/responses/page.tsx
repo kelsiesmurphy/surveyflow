@@ -137,7 +137,7 @@ export default function ResponsesPage({
             <CardDescription>Daily breakdown</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={chartConfig}>
+            <ChartContainer className="h-[300px] w-full" config={chartConfig}>
               <AreaChart data={chartData} margin={{ left: 12, right: 12 }}>
                 <CartesianGrid vertical={false} />
                 <XAxis dataKey="date" tickLine={false} axisLine={false} />
