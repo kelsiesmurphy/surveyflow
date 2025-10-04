@@ -1,8 +1,6 @@
-// convex/surveys.ts
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
-// Fetch all surveys
 export const getAllSurveys = query({
   args: {},
   handler: async ({ db }) => {
@@ -10,7 +8,6 @@ export const getAllSurveys = query({
   },
 });
 
-// Create a survey session (respondent starts survey)
 export const startSurvey = mutation({
   args: { surveyId: v.id("surveys"), respondentId: v.optional(v.string()) },
   handler: async ({ db }, { surveyId, respondentId }) => {
@@ -23,13 +20,12 @@ export const startSurvey = mutation({
   },
 });
 
-// Record an answer to a survey question
 export const answerSurveyQuestion = mutation({
   args: {
     sessionId: v.id("survey_sessions"),
     questionId: v.id("survey_questions"),
-    answer: v.any(), // Flexible: string, number, array, or object
-    metadata: v.optional(v.any()), // optional extra info (device, location, etc.)
+    answer: v.any(),
+    metadata: v.optional(v.any()),
   },
   handler: async ({ db }, { sessionId, questionId, answer, metadata }) => {
     const question = await db.get(questionId);
@@ -45,7 +41,6 @@ export const answerSurveyQuestion = mutation({
   },
 });
 
-// Complete a survey session
 export const completeSurvey = mutation({
   args: { sessionId: v.id("survey_sessions") },
   handler: async ({ db }, { sessionId }) => {
@@ -56,7 +51,6 @@ export const completeSurvey = mutation({
   },
 });
 
-// Fetch a survey with its questions
 export const getSurveyWithQuestions = query({
   args: { surveyId: v.id("surveys") },
   handler: async ({ db }, { surveyId }) => {
@@ -71,7 +65,6 @@ export const getSurveyWithQuestions = query({
   },
 });
 
-// Fetch a session with answers and questions
 export const getSessionWithAnswers = query({
   args: { sessionId: v.id("survey_sessions") },
   handler: async ({ db }, { sessionId }) => {
@@ -94,7 +87,6 @@ export const getSessionWithAnswers = query({
   },
 });
 
-// Fetch past sessions for a respondent (if logged in)
 export const getUserSurveySessions = query({
   args: { respondentId: v.string() },
   handler: async ({ db }, { respondentId }) => {
@@ -114,7 +106,6 @@ export const getSurveySessionsReport = query({
     const survey = await db.get(surveyId);
     if (!survey) return null;
 
-    // All sessions for this survey
     const sessions = await db
       .query("survey_sessions")
       .withIndex("by_survey", (q) => q.eq("surveyId", surveyId))
@@ -156,7 +147,7 @@ export const getSurveySessionsReport = query({
         totalSessions: total,
         completedCount,
         abandonedCount: total - completedCount,
-        completionRate, // %
+        completionRate,
       },
       sessions: sessionsWithAnswers,
     };

@@ -39,7 +39,6 @@ export default function SurveyEditor({
     }
   }
 
-  // Intro screen (no navigation)
   //   if (!sessionId) {
   //     return (
   //       <QuestionWrapper index={index} total={questionsLength}>
@@ -63,7 +62,6 @@ export default function SurveyEditor({
   //     );
   //   }
 
-  // Question types
   switch (current.type) {
     case "thank_you":
       return (

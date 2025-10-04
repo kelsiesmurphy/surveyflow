@@ -36,7 +36,7 @@ export default defineSchema({
   // Survey session per respondent
   survey_sessions: defineTable({
     surveyId: v.id("surveys"),
-    respondentId: v.optional(v.string()), // could be anonymous or linked to a user
+    respondentId: v.optional(v.string()), // anonymous or linked to a user
     startedAt: v.number(),
     completedAt: v.optional(v.number()),
     metadata: v.optional(v.any()), // e.g. device info, referral source

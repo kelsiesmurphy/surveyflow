@@ -93,7 +93,6 @@ export default function TakeSurvey({
     );
   }
 
-  // Question types
   switch (current.type) {
     case "thank_you":
       if (sessionId) {

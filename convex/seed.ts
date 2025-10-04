@@ -1,13 +1,11 @@
-// convex/seed.ts
 import { mutation } from "./_generated/server";
 
 export const seedNpsSurvey = mutation({
   args: {},
   handler: async ({ db }) => {
-    const createdBy = "system"; // could be a placeholder or admin user
+    const createdBy = "system";
     const createdAt = Date.now();
 
-    // Insert survey first (will patch in question IDs later)
     const surveyId = await db.insert("surveys", {
       title: "Customer Feedback Survey",
       description: "A sample NPS-style survey.",
@@ -97,7 +95,7 @@ export const seedNpsSurvey = mutation({
         title: "How likely are you to recommend us to a friend?",
         type: "rating",
         order: 6,
-        metadata: { scale: 10 }, // NPS-style 0–10 scale
+        metadata: { scale: 10 },
       },
       {
         surveyId,
@@ -113,7 +111,127 @@ export const seedNpsSurvey = mutation({
       questionIds.push(id);
     }
 
-    // Update survey with its question IDs
+    await db.patch(surveyId, { questionIds });
+
+    return { surveyId, questions: questionIds.length };
+  },
+});
+
+export const seedPostPurchaseSurvey = mutation({
+  args: {},
+  handler: async ({ db }) => {
+    const createdBy = "system";
+    const createdAt = Date.now();
+
+    const surveyId = await db.insert("surveys", {
+      title: "Post-Purchase Satisfaction Survey",
+      description: "Understand how customers feel after their recent purchase.",
+      coverImageStorageId: "kg3x2g4f9p2t1jz7t5v8hrf9a7rfzqxs",
+      coverImageAlt: "Happy customer holding a product box",
+      createdBy,
+      questionIds: [],
+      createdAt,
+      isActive: true,
+    });
+
+    const questions = [
+      {
+        surveyId,
+        title: "How satisfied are you with your recent purchase?",
+        subtitle: "Rate your satisfaction from 1 to 5",
+        type: "rating",
+        order: 1,
+        metadata: { scale: 5 },
+      },
+      {
+        surveyId,
+        title: "Which product did you purchase?",
+        subtitle: "Select one option",
+        type: "multiple_choice",
+        order: 2,
+        options: [
+          { label: "Physical product" },
+          { label: "Digital download" },
+          { label: "Subscription plan" },
+          { label: "Gift card" },
+        ],
+      },
+      {
+        surveyId,
+        title: "What made you choose us?",
+        subtitle: "Select all that apply",
+        type: "multiple_choice",
+        order: 3,
+        options: [
+          { label: "Price" },
+          { label: "Product quality" },
+          { label: "Customer service" },
+          { label: "Brand reputation" },
+          { label: "Other", hasOther: true },
+        ],
+      },
+      {
+        surveyId,
+        title: "Did your order arrive on time?",
+        subtitle: "Select one option",
+        type: "multiple_choice",
+        order: 4,
+        options: [
+          { label: "Yes, earlier than expected" },
+          { label: "Yes, on time" },
+          { label: "No, it was delayed" },
+        ],
+      },
+      {
+        surveyId,
+        title: "How easy was the checkout process?",
+        subtitle: "Select one option",
+        type: "multiple_choice",
+        order: 5,
+        options: [
+          { label: "Very easy" },
+          { label: "Somewhat easy" },
+          { label: "Neutral" },
+          { label: "Somewhat difficult" },
+          { label: "Very difficult" },
+        ],
+      },
+      {
+        surveyId,
+        title: "Would you purchase from us again?",
+        subtitle: "Select one option",
+        type: "multiple_choice",
+        order: 6,
+        options: [
+          { label: "Definitely" },
+          { label: "Probably" },
+          { label: "Not sure" },
+          { label: "Probably not" },
+          { label: "Definitely not" },
+        ],
+      },
+      {
+        surveyId,
+        title: "What could we do to improve your experience?",
+        subtitle: "Your honest feedback helps us get better.",
+        type: "text",
+        order: 7,
+      },
+      {
+        surveyId,
+        title: "Thank you for your feedback!",
+        subtitle: "We truly appreciate your time.",
+        type: "thank_you",
+        order: 8,
+      },
+    ];
+
+    const questionIds: any[] = [];
+    for (const q of questions) {
+      const id = await db.insert("survey_questions", q);
+      questionIds.push(id);
+    }
+
     await db.patch(surveyId, { questionIds });
 
     return { surveyId, questions: questionIds.length };

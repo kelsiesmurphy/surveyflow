@@ -7,7 +7,7 @@ import { modules } from "./test.setup";
 async function seedSurvey(t: ReturnType<typeof convexTest>) {
   const q1 = await t.run(({ db }) =>
     db.insert("survey_questions", {
-      surveyId: "temp" as any, // placeholder until survey is created
+      surveyId: "temp" as any,
       text: "How did you hear about us?",
       type: "multiple_choice",
       options: [
@@ -24,7 +24,7 @@ async function seedSurvey(t: ReturnType<typeof convexTest>) {
       surveyId: "temp" as any,
       text: "Would you recommend us to a friend?",
       type: "rating",
-      metadata: { scale: 10 }, // NPS style
+      metadata: { scale: 10 },
       order: 2,
     })
   );
@@ -71,18 +71,16 @@ test("answer questions and complete session", async () => {
     respondentId: "resp123",
   });
 
-  // Answer first question
   await t.mutation(api.surveys.answerSurveyQuestion, {
     sessionId,
     questionId: questions[0],
     answer: "Google",
   });
 
-  // Answer second question
   await t.mutation(api.surveys.answerSurveyQuestion, {
     sessionId,
     questionId: questions[1],
-    answer: 9, // NPS score
+    answer: 9,
   });
 
   const result = await t.mutation(api.surveys.completeSurvey, {
