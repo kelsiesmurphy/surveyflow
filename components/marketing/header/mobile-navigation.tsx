@@ -1,6 +1,6 @@
 "use client";
 
-import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import {
   Sheet,
   SheetContent,
@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { marketingNavItems } from "@/lib/constants/navigation-items";
 import { Authenticated, Unauthenticated } from "convex/react";
+import CustomUserButton from "@/components/custom-user-button";
 
 export default function MobileNavigation() {
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -54,7 +55,7 @@ export default function MobileNavigation() {
           </Unauthenticated>
 
           <Authenticated>
-            <UserButton />
+            <CustomUserButton />
           </Authenticated>
         </div>
       </SheetContent>

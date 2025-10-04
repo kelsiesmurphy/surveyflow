@@ -21,10 +21,10 @@ export default function MultipleChoiceQuestion({
           JSON.stringify(answers[current._id]) === JSON.stringify(value);
 
         return (
-          <div
+          <button
             key={i}
-            className={`py-5 px-6 flex gap-4 items-center justify-between border rounded-xl shadow-xs transition-all font-semibold duration-700 ${
-              isSelected && "border-primary bg-primary/10"
+            className={`py-5 px-6 flex gap-4 bg-muted items-center justify-between border rounded-xl shadow-xs transition-all font-semibold duration-700 ${
+              isSelected && "border-primary bg-muted/90"
             }`}
             onClick={() => updateAnswer(value)}
           >
@@ -52,7 +52,7 @@ export default function MultipleChoiceQuestion({
                 }`}
               />
             </div>
-          </div>
+          </button>
         );
       })}
     </div>

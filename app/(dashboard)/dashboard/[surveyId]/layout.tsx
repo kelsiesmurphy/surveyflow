@@ -5,7 +5,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Authenticated, Unauthenticated } from "convex/react";
 import { use } from "react";
 
-export default function DashboardLayout({
+export default function SurveyDashboardLayout({
   children,
   params,
 }: Readonly<{
@@ -18,25 +18,21 @@ export default function DashboardLayout({
   return (
     <>
       <Authenticated>
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen w-full">
           <Header surveyId={surveyId} />
-          <main
-            id="content"
-            className="flex-1 flex bg-muted pt-16"
-          >
+          <main id="content" className="flex-1 flex bg-muted">
             {children}
           </main>
         </div>
       </Authenticated>
+
       <Unauthenticated>
-        <div className="flex flex-col h-screen">
-          <Header surveyId={surveyId} />
-          <main id="content" className="flex-1 flex pt-16 px-4">
-            <div className="flex items-center justify-center flex-col w-full">
-              You need to be signed in to access the dashboard.
-            </div>
-          </main>
-        </div>
+        <Header />
+        <main id="content" className="flex-1 flex px-4">
+          <div className="flex items-center justify-center flex-col w-full">
+            You need to be signed in to access the dashboard.
+          </div>
+        </main>
       </Unauthenticated>
     </>
   );

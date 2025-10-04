@@ -1,11 +1,12 @@
 "use client";
 
-import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Authenticated, Unauthenticated } from "convex/react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { marketingNavItems } from "@/lib/constants/navigation-items";
+import CustomUserButton from "@/components/custom-user-button";
 
 export default function DesktopNavigation() {
   return (
@@ -25,7 +26,7 @@ export default function DesktopNavigation() {
       </Unauthenticated>
 
       <Authenticated>
-        <UserButton />
+        <CustomUserButton />
       </Authenticated>
     </div>
   );

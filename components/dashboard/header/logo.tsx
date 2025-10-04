@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Logo() {
+export default function Logo({href = "/"}: {href?: string}) {
   return (
-    <Link href="/" className="flex items-center gap-x-2">
+    <Link href={href} className="flex items-center gap-x-2">
       <svg
         width="44"
         height="44"
