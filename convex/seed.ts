@@ -10,7 +10,7 @@ export const seedNpsSurvey = mutation({
       title: "Customer Feedback Survey",
       description: "A sample NPS-style survey.",
       coverImageStorageId: "kg227qszdv53kwavzka2tr58797rfcrt",
-      coverImageAlt: "Building exterior",
+      coverImageAlt: "Buildings in front of blue sky",
       createdBy,
       questionIds: [],
       createdAt,
@@ -126,7 +126,7 @@ export const seedPostPurchaseSurvey = mutation({
     const surveyId = await db.insert("surveys", {
       title: "Post-Purchase Satisfaction Survey",
       description: "Understand how customers feel after their recent purchase.",
-      coverImageStorageId: "kg3x2g4f9p2t1jz7t5v8hrf9a7rfzqxs",
+      coverImageStorageId: "kg2aqm3av2fr9fe4d66tqz6x397rwwj5",
       coverImageAlt: "Happy customer holding a product box",
       createdBy,
       questionIds: [],
@@ -223,6 +223,118 @@ export const seedPostPurchaseSurvey = mutation({
         subtitle: "We truly appreciate your time.",
         type: "thank_you",
         order: 8,
+      },
+    ];
+
+    const questionIds: any[] = [];
+    for (const q of questions) {
+      const id = await db.insert("survey_questions", q);
+      questionIds.push(id);
+    }
+
+    await db.patch(surveyId, { questionIds });
+
+    return { surveyId, questions: questionIds.length };
+  },
+});
+
+export const seedTeamCultureSurvey = mutation({
+  args: {},
+  handler: async ({ db }) => {
+    const createdBy = "system";
+    const createdAt = Date.now();
+
+    const surveyId = await db.insert("surveys", {
+      title: "Team Culture & Engagement Survey",
+      description:
+        "Help us understand how our team feels about our culture, communication, and collaboration.",
+      coverImageStorageId: "kg2ew81j4ks0ehescyx1pkbxy97rxw7b",
+      coverImageAlt: "A team collaborating at a table",
+      createdBy,
+      questionIds: [],
+      createdAt,
+      isActive: true,
+    });
+
+    const questions = [
+      {
+        surveyId,
+        title: "How connected do you feel to our team culture?",
+        subtitle: "Rate from 1 (not connected) to 5 (highly connected)",
+        type: "rating",
+        order: 1,
+        metadata: { scale: 5 },
+      },
+      {
+        surveyId,
+        title: "How often do you receive helpful feedback from your manager?",
+        subtitle: "Select one option",
+        type: "multiple_choice",
+        order: 2,
+        options: [
+          { label: "Weekly" },
+          { label: "Monthly" },
+          { label: "Quarterly" },
+          { label: "Rarely" },
+        ],
+      },
+      {
+        surveyId,
+        title: "Do you feel your contributions are recognized?",
+        subtitle: "Select one option",
+        type: "multiple_choice",
+        order: 3,
+        options: [
+          { label: "Always" },
+          { label: "Often" },
+          { label: "Sometimes" },
+          { label: "Rarely" },
+          { label: "Never" },
+        ],
+      },
+      {
+        surveyId,
+        title: "Which aspects of our culture do you value most?",
+        subtitle: "Select all that apply",
+        type: "multiple_choice",
+        order: 4,
+        options: [
+          { label: "Collaboration" },
+          { label: "Transparency" },
+          { label: "Work-life balance" },
+          { label: "Innovation" },
+          { label: "Inclusivity" },
+          { label: "Other", hasOther: true },
+        ],
+      },
+      {
+        surveyId,
+        title:
+          "If you could improve one thing about our culture, what would it be?",
+        subtitle: "Your honest feedback helps us grow together.",
+        type: "text",
+        order: 5,
+      },
+      {
+        surveyId,
+        title: "Would you recommend working here to a friend?",
+        subtitle: "Select one option",
+        type: "multiple_choice",
+        order: 6,
+        options: [
+          { label: "Definitely" },
+          { label: "Probably" },
+          { label: "Not sure" },
+          { label: "Probably not" },
+          { label: "Definitely not" },
+        ],
+      },
+      {
+        surveyId,
+        title: "Thank you for sharing your thoughts!",
+        subtitle: "Your feedback makes our culture stronger 💪",
+        type: "thank_you",
+        order: 7,
       },
     ];
 

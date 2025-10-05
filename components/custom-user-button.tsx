@@ -4,15 +4,17 @@ import React from "react";
 
 export default function CustomUserButton() {
   return (
-    <UserButton>
-      <UserButton.MenuItems>
-        <UserButton.Link
-          label="Dashboard"
-          href="/dashboard"
-          labelIcon={<MonitorSmartphone size={16} />}
-        />
-        <UserButton.Action label="manageAccount" />
-      </UserButton.MenuItems>
-    </UserButton>
+    <div className="flex-1 flex justify-center">
+      <UserButton>
+        <UserButton.MenuItems>
+          <UserButton.Link
+            label="Dashboard"
+            href="/dashboard"
+            labelIcon={<MonitorSmartphone size={16} />}
+          />
+          <UserButton.Action label="manageAccount" />
+        </UserButton.MenuItems>
+      </UserButton>
+    </div>
   );
 }

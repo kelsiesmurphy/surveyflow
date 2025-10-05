@@ -74,9 +74,13 @@ export default function SharePage() {
           </CardHeader>
           <CardContent className="space-y-6">
             {/* URL with copy button */}
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               <Input value={surveyUrl} readOnly />
-              <Button onClick={handleCopy} variant="secondary">
+              <Button
+                onClick={handleCopy}
+                variant="secondary"
+                className="w-full"
+              >
                 {copied ? (
                   <>
                     <Check className="h-4 w-4 mr-1" /> Copied
@@ -111,7 +115,7 @@ export default function SharePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button variant="outline" size="lg" className="py-6">
+                    <Button variant="outline" size="lg" className="py-6 w-full sm:w-auto">
                       <Image
                         unoptimized
                         alt=""

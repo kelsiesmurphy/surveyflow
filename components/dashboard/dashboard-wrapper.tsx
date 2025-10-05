@@ -74,7 +74,7 @@ export default function DashboardWrapper() {
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="">
+                <CardContent className="min-h-12">
                   <p className="text-sm text-muted-foreground line-clamp-2">
                     {survey.description || "No description provided."}
                   </p>

@@ -3,7 +3,8 @@
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Monitor, Smartphone } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
+import SidebarPreview from "./sidebar-preview";
 
 export default function Sidebar({
   questions,
@@ -47,15 +48,11 @@ export default function Sidebar({
                 i === index ? "border-primary" : ""
               }`}
             >
-              <div className="h-24 bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                Preview
-              </div>
-              <div className="py-2 px-3 flex justify-between items-center">
-                <p className="text-sm font-medium">{question.type}</p>
-                <p className="text-xs text-muted-foreground">
-                  {i + 1} of {questions.length}
-                </p>
-              </div>
+              <SidebarPreview
+                index={i}
+                question={question}
+                questions={questions}
+              />
             </div>
           ))}
         </div>

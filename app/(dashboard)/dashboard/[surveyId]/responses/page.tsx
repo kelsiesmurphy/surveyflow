@@ -12,19 +12,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { AreaChart, Area, CartesianGrid, XAxis } from "recharts";
 
 import { DataTable } from "@/components/dashboard/responses-page/data-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
+import Chart from "@/components/dashboard/responses-page/chart";
 
 type SessionRow = {
   sessionId: string;
@@ -46,23 +38,6 @@ export default function ResponsesPage({
   const report = useQuery(api.surveys.getSurveySessionsReport, { surveyId });
 
   if (!report) return <div>Loading…</div>;
-
-  const chartData = report.sessions.map((s) => ({
-    date: format(new Date(s.startedAt), "MM/dd"),
-    completed: s.status === "Completed" ? 1 : 0,
-    abandoned: s.status === "Abandoned" ? 1 : 0,
-  }));
-
-  const chartConfig = {
-    completed: {
-      label: "Completed",
-      color: "var(--chart-1)",
-    },
-    abandoned: {
-      label: "Abandoned",
-      color: "var(--chart-2)",
-    },
-  } satisfies ChartConfig;
 
   const columns: ColumnDef<SessionRow>[] = [
     {
@@ -93,8 +68,8 @@ export default function ResponsesPage({
   ];
 
   return (
-    <div className="p-6 flex-1 flex justify-center">
-      <div className="flex-1 max-w-6xl space-y-8">
+    <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="mx-auto w-full max-w-6xl space-y-8">
         <h1 className="text-2xl font-bold">
           Responses for {report.survey.title}
         </h1>
@@ -131,41 +106,7 @@ export default function ResponsesPage({
           </Card>
         </div>
         {/* Chart */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Completion Trend</CardTitle>
-            <CardDescription>Daily breakdown</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer className="h-[300px] w-full" config={chartConfig}>
-              <AreaChart data={chartData} margin={{ left: 12, right: 12 }}>
-                <CartesianGrid vertical={false} />
-                <XAxis dataKey="date" tickLine={false} axisLine={false} />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="dot" />}
-                />
-                <Area
-                  dataKey="completed"
-                  type="monotone"
-                  fill="var(--color-completed)"
-                  stroke="var(--color-completed)"
-                  fillOpacity={0.3}
-                  stackId="a"
-                />
-                <Area
-                  dataKey="abandoned"
-                  type="monotone"
-                  fill="var(--color-abandoned)"
-                  stroke="var(--color-abandoned)"
-                  fillOpacity={0.3}
-                  stackId="a"
-                />
-                <ChartLegend content={<ChartLegendContent />} />
-              </AreaChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
+        <Chart report={report} />
         {/* Data Table */}
         <Card>
           <CardHeader>
