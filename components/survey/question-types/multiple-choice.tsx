@@ -35,6 +35,7 @@ export default function MultipleChoiceQuestion({
                   alt={opt.label}
                   width={24}
                   height={24}
+                  sizes="24px"
                   unoptimized
                   className="inline-block text-foreground size-6 mr-3"
                 />

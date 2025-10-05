@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function SignUpSkeleton() {
   return (
-    <div className=" w-[25rem] border border-secondary rounded-xl overflow-hidden">
+    <div className="w-full max-w-[25rem] border border-secondary rounded-xl overflow-hidden">
       <div className="p-8 space-y-2 flex flex-col items-center">
         <Skeleton className="h-8 w-1/2" />
         <Skeleton className="h-4 w-3/4" />

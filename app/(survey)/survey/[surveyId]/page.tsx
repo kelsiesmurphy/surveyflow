@@ -76,6 +76,8 @@ export default function TakeSurvey({
             src={getConvexImageUrl(survey.coverImageStorageId)}
             width={400}
             height={300}
+            priority
+            sizes="(max-width: 768px) 100vw, 400px"
             alt={
               survey.coverImageAlt ? survey.coverImageAlt : "Survey Cover Image"
             }

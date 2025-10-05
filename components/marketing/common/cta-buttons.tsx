@@ -10,15 +10,6 @@ export default function CTAButtons({
 }) {
   return (
     <div className="flex flex-col w-full sm:w-min sm:flex-row gap-4">
-      <Button
-        size={isLargeButtons ? "lg" : "default"}
-        variant="secondary"
-        asChild
-      >
-        <Link href="" className="gap-2">
-          <Eye /> Preview
-        </Link>
-      </Button>
       <Unauthenticated>
         <Button size={isLargeButtons ? "lg" : "default"} asChild>
           <Link href="/sign-up">Create account</Link>

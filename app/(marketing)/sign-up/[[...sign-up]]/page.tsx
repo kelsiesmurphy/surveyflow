@@ -5,7 +5,7 @@ import { FileText, Layers, BarChart2, Palette } from "lucide-react";
 export default function SignUpPage() {
   return (
     <div className="flex-1 flex items-center">
-      <div className="flex-1 p-6 md:p-10 flex gap-8 md:gap-20 items-center">
+      <div className="flex-1 p-6 md:p-10 flex flex-wrap-reverse gap-8 md:gap-20 items-center">
         <ul className="max-w-sm space-y-8">
           <li>
             <div className="flex items-center gap-2">

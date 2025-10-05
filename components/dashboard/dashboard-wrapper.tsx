@@ -50,10 +50,8 @@ export default function DashboardWrapper() {
   return (
     <div className="flex flex-1 justify-center">
       <div className="w-full max-w-6xl p-6 space-y-6">
-        <div className="flex items-center justify-between gap-4">
-          <h1 className="text-3xl font-bold mb-6 tracking-tight">
-            Your Surveys
-          </h1>
+        <div className="flex items-center flex-wrap justify-between gap-4">
+          <h1 className="text-3xl font-bold tracking-tight">Your Surveys</h1>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button className="opacity-50 cursor-not-allowed">
@@ -80,6 +78,7 @@ export default function DashboardWrapper() {
                       src={getConvexImageUrl(survey.coverImageStorageId)}
                       alt={survey.coverImageAlt ?? "Survey cover"}
                       fill
+                      sizes="(max-width: 768px) 100vw, 400px"
                       className="object-cover"
                     />
                   </div>

@@ -115,6 +115,7 @@ export default function SharePage() {
                     <Button variant="outline" size="lg" className="py-6 w-full sm:w-auto">
                       <Image
                         unoptimized
+                        sizes="32px"
                         alt=""
                         width={32}
                         height={32}

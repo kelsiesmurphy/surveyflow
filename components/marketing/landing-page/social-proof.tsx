@@ -18,14 +18,18 @@ export default function SocialProof({
           {prefersReducedMotion ? (
             <div className="flex flex-wrap gap-4 py-6 justify-center sm:gap-6 sm:py-8">
               {content.logos.map((logo, index) => (
-                <Image
-                  className="h-10 w-auto flex-none sm:h-12"
-                  src={logo.image}
+                <div
                   key={index}
-                  width="0"
-                  height={48}
-                  alt={logo.altText}
-                />
+                  className="relative h-10 sm:h-12 w-auto aspect-[3/1] flex-none"
+                >
+                  <Image
+                    src={logo.image}
+                    alt={logo.altText}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
               ))}
             </div>
           ) : (
@@ -41,15 +45,19 @@ export default function SocialProof({
             >
               {[...new Array(2)].fill(0).map((_, index) => (
                 <React.Fragment key={index}>
-                  {content.logos.map((logo, index) => (
-                    <Image
-                      className="h-10 w-auto flex-none sm:h-12"
-                      src={logo.image}
-                      key={index}
-                      width="0"
-                      height={48}
-                      alt={logo.altText}
-                    />
+                  {content.logos.map((logo, idx) => (
+                    <div
+                      key={idx}
+                      className="relative h-10 sm:h-12 w-auto aspect-[3/1] flex-none"
+                    >
+                      <Image
+                        src={logo.image}
+                        alt={logo.altText}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
                   ))}
                 </React.Fragment>
               ))}

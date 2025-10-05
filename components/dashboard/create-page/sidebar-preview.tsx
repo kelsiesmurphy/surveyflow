@@ -36,7 +36,14 @@ export default function SidebarPreview({
   return (
     <>
       <div className="bg-muted flex items-center p-2 justify-center text-xs text-muted-foreground">
-        <Image src={path} alt="Preview" width={52} height={100} className="rounded-sm shadow-sm" />
+        <Image
+          src={path}
+          alt="Preview"
+          sizes="52px"
+          width={52}
+          height={112}
+          className="rounded-sm shadow-sm w-[52px] h-[112px]"
+        />
       </div>
       <div className="py-2 px-3 flex justify-between items-center">
         <p className="text-sm font-medium">{title}</p>
