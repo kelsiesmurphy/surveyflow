@@ -21,7 +21,7 @@ export default function SurveyDashboardPage({
   const survey = useQuery(api.surveys.getSurveyWithQuestions, { surveyId });
 
   const [index, setIndex] = useState(0);
-  const [showInfoBanner, setShowInfoBanner] = useState<Boolean>(true);
+  const [showInfoBanner, setShowInfoBanner] = useState<boolean>(true);
   const [breakpoint, setBreakpoint] = useState<"mobile" | "desktop">("desktop");
 
   const questions = (survey?.questions ?? []).filter(Boolean);

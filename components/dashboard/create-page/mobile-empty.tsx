@@ -8,7 +8,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty";
 import { Id } from "@/convex/_generated/dataModel";
-import { BarChart3, Edit3, Link2, Smartphone } from "lucide-react";
+import { BarChart3, Link2, Smartphone } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -26,7 +26,7 @@ export default function MobileEmpty({
       </EmptyHeader>
       <EmptyTitle>This page is not yet available on mobile devices</EmptyTitle>
       <EmptyDescription>
-        We're working on it, in the meantime check responses or generate a share
+        We&apos;re working on it, in the meantime check responses or generate a share
         link
       </EmptyDescription>
       <EmptyContent className="flex-row justify-center">
