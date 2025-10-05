@@ -73,7 +73,6 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      {/* Filters and column visibility */}
       <div className="flex items-center py-4">
         {filterColumn && (
           <Input
@@ -114,7 +113,6 @@ export function DataTable<TData, TValue>({
         </DropdownMenu>
       </div>
 
-      {/* Table */}
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>
@@ -158,7 +156,6 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
 
-      {/* Pagination */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"

@@ -105,9 +105,7 @@ export default function ResponsesPage({
             </CardContent>
           </Card>
         </div>
-        {/* Chart */}
         <Chart report={report} />
-        {/* Data Table */}
         <Card>
           <CardHeader>
             <CardTitle>All Sessions</CardTitle>

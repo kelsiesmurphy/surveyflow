@@ -14,9 +14,14 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BarChart3, Edit3 } from "lucide-react";
+import { BarChart3, Edit3, Plus } from "lucide-react";
 import { getConvexImageUrl } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function DashboardWrapper() {
   const surveys = useQuery(api.surveys.getAllSurveys, {});
@@ -45,7 +50,22 @@ export default function DashboardWrapper() {
   return (
     <div className="flex flex-1 justify-center">
       <div className="w-full max-w-6xl p-6 space-y-6">
-        <h1 className="text-3xl font-bold mb-6 tracking-tight">Your Surveys</h1>
+        <div className="flex items-center justify-between gap-4">
+          <h1 className="text-3xl font-bold mb-6 tracking-tight">
+            Your Surveys
+          </h1>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button className="opacity-50 cursor-not-allowed">
+                <Plus />
+                Create New Survey
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Disabled in demo mode</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
         <Separator />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {surveys.map((survey) => (
@@ -70,7 +90,7 @@ export default function DashboardWrapper() {
                       {survey.title}
                     </CardTitle>
                     <Badge variant={survey.isActive ? "default" : "secondary"}>
-                      {survey.isActive ? "Active" : "Inactive"}
+                      {survey.isActive ? "Demo" : "Inactive"}
                     </Badge>
                   </div>
                 </CardHeader>

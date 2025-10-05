@@ -73,7 +73,6 @@ export default function SharePage() {
             <CardTitle>Share your survey</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* URL with copy button */}
             <div className="flex gap-2 flex-wrap">
               <Input value={surveyUrl} readOnly />
               <Button
@@ -92,7 +91,6 @@ export default function SharePage() {
                 )}
               </Button>
             </div>
-            {/* QR Code */}
             <div className="flex flex-col items-center gap-4">
               <QRCodeCanvas
                 id="qr-code"
@@ -104,7 +102,6 @@ export default function SharePage() {
                 <Download className="h-4 w-4 mr-1" /> Download QR
               </Button>
             </div>
-            {/* Social Share */}
             <div className="space-y-3">
               <h3 className="font-medium">Share on social media</h3>
               <div className="flex justify-between flex-wrap gap-3">
