@@ -38,7 +38,7 @@ export default function Sidebar({
         </Button>
       </div>
 
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 h-[calc(100vh-133px)]">
         <div className="p-4 space-y-4">
           {questions.map((question, i) => (
             <div

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Authenticated, Unauthenticated } from "convex/react";
-import { Eye } from "lucide-react";
 import Link from "next/link";
 
 export default function CTAButtons({
@@ -11,9 +11,14 @@ export default function CTAButtons({
   return (
     <div className="flex flex-col w-full sm:w-min sm:flex-row gap-4">
       <Unauthenticated>
-        <Button size={isLargeButtons ? "lg" : "default"} asChild>
-          <Link href="/sign-up">Create account</Link>
-        </Button>
+        <SignInButton>
+          <Button size={isLargeButtons ? "lg" : "default"} variant="outline">
+            Sign in
+          </Button>
+        </SignInButton>
+        <SignUpButton>
+          <Button size={isLargeButtons ? "lg" : "default"}>Sign up</Button>
+        </SignUpButton>
       </Unauthenticated>
       <Authenticated>
         <Button size={isLargeButtons ? "lg" : "default"} asChild>

@@ -45,14 +45,6 @@ export default function ResponsesPage({
       header: "Status",
     },
     {
-      accessorKey: "respondentId",
-      header: "Respondent",
-    },
-    {
-      accessorKey: "answersCount",
-      header: "Answers",
-    },
-    {
       accessorKey: "startedAt",
       header: "Started",
       cell: ({ row }) => format(new Date(row.getValue("startedAt")), "PPpp"),
