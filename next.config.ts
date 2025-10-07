@@ -6,8 +6,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "fearless-mandrill-152.convex.site",
-        port: "",
-        pathname: "/getImage",
+        pathname: "/getImage*",
       },
     ],
   },
